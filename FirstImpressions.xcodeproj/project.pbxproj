@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37F833C01832F80200C9EDDD /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37F833BF1832F80200C9EDDD /* Storyboard.storyboard */; };
 		693F64EB1832F25E00917555 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693F64EA1832F25E00917555 /* Foundation.framework */; };
 		693F64ED1832F25E00917555 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693F64EC1832F25E00917555 /* CoreGraphics.framework */; };
 		693F64EF1832F25E00917555 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693F64EE1832F25E00917555 /* UIKit.framework */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		37F833BF1832F80200C9EDDD /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		693F64E71832F25D00917555 /* FirstImpressions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirstImpressions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		693F64EA1832F25E00917555 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		693F64EC1832F25E00917555 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				693F64F41832F25E00917555 /* FirstImpressions-Info.plist */,
+				37F833BF1832F80200C9EDDD /* Storyboard.storyboard */,
 				693F64F51832F25E00917555 /* InfoPlist.strings */,
 				693F64F81832F25E00917555 /* main.m */,
 				693F64FA1832F25E00917555 /* FirstImpressions-Prefix.pch */,
@@ -231,6 +234,7 @@
 			files = (
 				693F64F71832F25E00917555 /* InfoPlist.strings in Resources */,
 				693F65021832F25E00917555 /* Images.xcassets in Resources */,
+				37F833C01832F80200C9EDDD /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +450,7 @@
 				693F651B1832F25E00917555 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		693F651C1832F25E00917555 /* Build configuration list for PBXNativeTarget "FirstImpressionsTests" */ = {
 			isa = XCConfigurationList;
@@ -454,6 +459,7 @@
 				693F651E1832F25E00917555 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
