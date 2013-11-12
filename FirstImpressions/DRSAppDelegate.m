@@ -26,6 +26,7 @@
 - (void)applicationWillResignActive:(UIApplication *)application
 {
 	//Dave was here
+    //Samantha was here as well :D
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
