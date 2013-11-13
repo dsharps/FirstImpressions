@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		37F833C01832F80200C9EDDD /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37F833BF1832F80200C9EDDD /* Storyboard.storyboard */; };
+		37F833C61832FB4B00C9EDDD /* SSMMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F833C51832FB4B00C9EDDD /* SSMMainViewController.m */; };
 		693F64EB1832F25E00917555 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693F64EA1832F25E00917555 /* Foundation.framework */; };
 		693F64ED1832F25E00917555 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693F64EC1832F25E00917555 /* CoreGraphics.framework */; };
 		693F64EF1832F25E00917555 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693F64EE1832F25E00917555 /* UIKit.framework */; };
@@ -37,6 +38,8 @@
 
 /* Begin PBXFileReference section */
 		37F833BF1832F80200C9EDDD /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		37F833C41832FB4B00C9EDDD /* SSMMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSMMainViewController.h; sourceTree = "<group>"; };
+		37F833C51832FB4B00C9EDDD /* SSMMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSMMainViewController.m; sourceTree = "<group>"; };
 		693F64E71832F25D00917555 /* FirstImpressions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirstImpressions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		693F64EA1832F25E00917555 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		693F64EC1832F25E00917555 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -119,6 +122,8 @@
 			children = (
 				693F64FB1832F25E00917555 /* DRSAppDelegate.h */,
 				693F64FC1832F25E00917555 /* DRSAppDelegate.m */,
+				37F833C41832FB4B00C9EDDD /* SSMMainViewController.h */,
+				37F833C51832FB4B00C9EDDD /* SSMMainViewController.m */,
 				693F65011832F25E00917555 /* Images.xcassets */,
 				693F64FE1832F25E00917555 /* FirstImpressions.xcdatamodeld */,
 				693F64F31832F25E00917555 /* Supporting Files */,
@@ -200,7 +205,7 @@
 		693F64DF1832F25D00917555 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = DRS;
+				CLASSPREFIX = SSM;
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = SamAlexDave;
 				TargetAttributes = {
@@ -254,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				693F65001832F25E00917555 /* FirstImpressions.xcdatamodeld in Sources */,
+				37F833C61832FB4B00C9EDDD /* SSMMainViewController.m in Sources */,
 				693F64FD1832F25E00917555 /* DRSAppDelegate.m in Sources */,
 				693F64F91832F25E00917555 /* main.m in Sources */,
 			);
