@@ -430,7 +430,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/samanthamerritt/CodeSnippetsAndExcess/iOSProjects/FirstImpressions/FirstImpressions,
+					../FirstImpressions,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FirstImpressions/FirstImpressions-Prefix.pch";
@@ -447,7 +447,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/samanthamerritt/CodeSnippetsAndExcess/iOSProjects/FirstImpressions/FirstImpressions,
+					../FirstImpressions,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FirstImpressions/FirstImpressions-Prefix.pch";
