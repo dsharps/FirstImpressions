@@ -26,7 +26,7 @@
 - (void)applicationWillResignActive:(UIApplication *)application
 {
 	//Dave was here
-    //Samantha was here as well :D
+    //Dave was here as well :D
     // yo im here
 }
 
