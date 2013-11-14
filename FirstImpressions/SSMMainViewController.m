@@ -23,6 +23,7 @@
 @implementation SSMMainViewController
 
 -(IBAction)sendAMessageToParse:(id)sender{
+	[_inputMessage resignFirstResponder];
     PFQuery *query = [PFQuery queryWithClassName:@"Message"];
     [query whereKey:@"messageName" equalTo:@"Test Message"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
