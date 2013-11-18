@@ -30,12 +30,12 @@
     
     SSMMessage *message = [[SSMMessage alloc] init];
     message.body = @"This is the entire content of my message";
-    message.sender = @"User#43";
+    message.sender = @"Unhappy Owl";
     [_messages addObject:message];
     
     message = [[SSMMessage alloc] init];
     message.body = @"Would you rather meet Harry Potter or Ron Weasley?";
-    message.sender = @"User#73";
+    message.sender = @"Unhappy Penguin";
     [_messages addObject:message];
     
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
