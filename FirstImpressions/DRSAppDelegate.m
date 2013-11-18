@@ -7,9 +7,14 @@
 //
 
 #import "DRSAppDelegate.h"
+#import "SSMMessage.h"
+#import "SSMMessagesViewController.h"
 #import <Parse/Parse.h>
 
 @implementation DRSAppDelegate
+{
+    NSMutableArray *_messages;
+}
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
@@ -20,6 +25,23 @@
     [Parse setApplicationId:@"Y7seXmEGWI7umFdEign2YEaZznaUw2impbRbSDVo"
                   clientKey:@"R0WflgEI5ck96b4abx1kdU07SwhhWrCGtYQ6Hd3c"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    _messages = [NSMutableArray arrayWithCapacity:20];
+    
+    SSMMessage *message = [[SSMMessage alloc] init];
+    message.body = @"This is the entire content of my message";
+    message.sender = @"User#43";
+    [_messages addObject:message];
+    
+    message = [[SSMMessage alloc] init];
+    message.body = @"Would you rather meet Harry Potter or Ron Weasley?";
+    message.sender = @"User#73";
+    [_messages addObject:message];
+    
+    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+    SSMMessagesViewController *messagesViewController = [navigationController viewControllers][0];
+    messagesViewController.messages = _messages;
+    
     return YES;
 }
 
