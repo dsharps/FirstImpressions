@@ -7,7 +7,6 @@
 //
 
 #import "SSMMainViewController.h"
-#import <Parse/Parse.h>
 
 @interface SSMMainViewController ()
 
@@ -56,10 +55,7 @@
             } else {
                 //update message
                 PFObject *messageToShow = objects[0];
-                _outputMessage.text = [NSString stringWithFormat:@"%@",messageToShow[@"body"]];
-                
-                NSLog([NSString stringWithFormat:@"%@",messageToShow[@"body"]]);
-            }
+                _outputMessage.text = [NSString stringWithFormat:@"%@",messageToShow[@"body"]];            }
         } else {
             //error
         }

@@ -146,12 +146,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DA1-aQ-TW4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="78" y="-200"/>
+            <point key="canvasLocation" x="-144" y="-174"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="Z6c-lt-5yx">
             <objects>
-                <viewController id="NYR-O2-6rv" sceneMemberID="viewController">
+                <viewController id="NYR-O2-6rv" customClass="SSMLoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NcN-R5-T9z"/>
                         <viewControllerLayoutGuide type="bottom" id="G1Z-9j-CY0"/>
@@ -159,12 +159,31 @@
                     <view key="view" contentMode="scaleToFill" id="eG0-IY-6IV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uKy-hQ-YVd">
+                                <rect key="frame" x="54" y="209" width="212" height="81"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="LOGIN WITH FACEBOOK">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginPressed:" destination="NYR-O2-6rv" eventType="touchUpInside" id="LZg-bi-yCG"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="EnN-kK-lze"/>
+                    <connections>
+                        <outlet property="btnLogin" destination="uKy-hQ-YVd" id="Ejh-gS-iXW"/>
+                        <segue destination="2Rq-go-3xC" kind="push" identifier="LoginSuccessful" id="VxU-zC-IQ0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rGh-2h-mFm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-771" y="-208"/>
+            <point key="canvasLocation" x="-545" y="-166"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PL2-JG-Tfp">
@@ -177,12 +196,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="2Rq-go-3xC" kind="relationship" relationship="rootViewController" id="Wyh-5P-7o2"/>
+                        <segue destination="NYR-O2-6rv" kind="relationship" relationship="rootViewController" id="Tru-0U-oPn"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="730-fm-myP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-322" y="-200"/>
+            <point key="canvasLocation" x="-1196" y="-166"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

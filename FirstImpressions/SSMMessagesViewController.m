@@ -28,6 +28,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // Seque to the Image Wall
+    _messages = [NSMutableArray arrayWithCapacity:20];
+    
+    SSMMessage *message = [[SSMMessage alloc] init];
+    message.body = @"This is the entire content of my message";
+    message.sender = @"Unhappy Owl";
+    [_messages addObject:message];
+    
+    message = [[SSMMessage alloc] init];
+    message.body = @"Would you rather meet Harry Potter or Ron Weasley?";
+    message.sender = @"Unhappy Penguin";
+    [_messages addObject:message];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
