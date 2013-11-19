@@ -11,6 +11,7 @@
 		37E52918183A872600EECF9A /* SSMMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E52917183A872600EECF9A /* SSMMessage.m */; };
 		37E5291E183A8A5900EECF9A /* SSMMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E5291D183A8A5900EECF9A /* SSMMessageCell.m */; };
 		37E52922183A8FD300EECF9A /* icon1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 37E52921183A8FD300EECF9A /* icon1.jpg */; };
+		37EE7ED6183C1D9B00B3E444 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37EE7ED5183C1D9B00B3E444 /* FacebookSDK.framework */; };
 		37F833C01832F80200C9EDDD /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37F833BF1832F80200C9EDDD /* Storyboard.storyboard */; };
 		37F833C61832FB4B00C9EDDD /* SSMMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F833C51832FB4B00C9EDDD /* SSMMainViewController.m */; };
 		37F833C81832FE6000C9EDDD /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F833C71832FE6000C9EDDD /* Parse.framework */; };
@@ -60,6 +61,7 @@
 		37E5291C183A8A5900EECF9A /* SSMMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSMMessageCell.h; sourceTree = "<group>"; };
 		37E5291D183A8A5900EECF9A /* SSMMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSMMessageCell.m; sourceTree = "<group>"; };
 		37E52921183A8FD300EECF9A /* icon1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = icon1.jpg; sourceTree = "<group>"; };
+		37EE7ED5183C1D9B00B3E444 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		37F833BF1832F80200C9EDDD /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		37F833C41832FB4B00C9EDDD /* SSMMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSMMainViewController.h; sourceTree = "<group>"; };
 		37F833C51832FB4B00C9EDDD /* SSMMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSMMainViewController.m; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				37F833CC1832FECD00C9EDDD /* CFNetwork.framework in Frameworks */,
 				37F833CA1832FEB800C9EDDD /* AudioToolbox.framework in Frameworks */,
 				693F64F11832F25E00917555 /* CoreData.framework in Frameworks */,
+				37EE7ED6183C1D9B00B3E444 /* FacebookSDK.framework in Frameworks */,
 				693F64EF1832F25E00917555 /* UIKit.framework in Frameworks */,
 				693F64EB1832F25E00917555 /* Foundation.framework in Frameworks */,
 				37F833C81832FE6000C9EDDD /* Parse.framework in Frameworks */,
@@ -155,6 +158,7 @@
 		693F64E91832F25D00917555 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				37EE7ED5183C1D9B00B3E444 /* FacebookSDK.framework */,
 				37F833D91832FF2A00C9EDDD /* SystemConfiguration.framework */,
 				37F833D71832FF2000C9EDDD /* StoreKit.framework */,
 				37F833D51832FF1700C9EDDD /* Security.framework */,
@@ -454,6 +458,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					../FirstImpressions,
+					/Users/samanthamerritt/CodeSnippetsAndExcess/iOSProjects/FirstImpressions/FirstImpressions,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FirstImpressions/FirstImpressions-Prefix.pch";
@@ -472,6 +477,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					../FirstImpressions,
+					/Users/samanthamerritt/CodeSnippetsAndExcess/iOSProjects/FirstImpressions/FirstImpressions,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FirstImpressions/FirstImpressions-Prefix.pch";

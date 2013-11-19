@@ -36,5 +36,18 @@
 	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>Storyboard</string>
+	<key>FacebookAppID</key>
+	<string>592490777466750</string>
+	<key>FacebookDisplayName</key>
+	<string>FirstImpressions</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb592490777466750</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
