@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SSMMainViewController : UIViewController
+@interface SSMComposeViewController : UIViewController
 
 @end

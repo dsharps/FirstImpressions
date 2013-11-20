@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 SamAlexDave. All rights reserved.
 //
 
-#import "SSMMainViewController.h"
+#import "SSMComposeViewController.h"
 
-@interface SSMMainViewController ()
+@interface SSMComposeViewController ()
 
 @property (nonatomic, strong) IBOutlet UITextView *inputMessage;
 @property (nonatomic, strong) IBOutlet UILabel *outputMessage;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation SSMMainViewController
+@implementation SSMComposeViewController
 
 -(IBAction)sendAMessageToParse:(id)sender{
 	[_inputMessage resignFirstResponder];

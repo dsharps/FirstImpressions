@@ -6,15 +6,15 @@
 //  Copyright (c) 2013 SamAlexDave. All rights reserved.
 //
 
-#import "SSMMessagesViewController.h"
+#import "SSMHistoryViewController.h"
 #import "SSMMessage.h"
 #import "SSMMessageCell.h"
 
-@interface SSMMessagesViewController ()
+@interface SSMHistoryViewController ()
 
 @end
 
-@implementation SSMMessagesViewController
+@implementation SSMHistoryViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {

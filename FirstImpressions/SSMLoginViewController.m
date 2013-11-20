@@ -7,7 +7,7 @@
 //
 
 #import "SSMLoginViewController.h"
-#import "SSMMessagesViewController.h"
+#import "SSMHistoryViewController.h"
 #import "SSMMessage.h"
 
 @interface SSMLoginViewController () <SSMCommunicationsDelegate>

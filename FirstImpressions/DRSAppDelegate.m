@@ -8,7 +8,7 @@
 
 #import "DRSAppDelegate.h"
 #import "SSMMessage.h"
-#import "SSMMessagesViewController.h"
+#import "SSMHistoryViewController.h"
 #import <Parse/Parse.h>
 
 @implementation DRSAppDelegate

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SSMMessagesViewController : UITableViewController
+@interface SSMHistoryViewController : UITableViewController
 
 @property (nonatomic, strong) NSMutableArray *messages;
 
