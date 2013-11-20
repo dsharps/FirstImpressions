@@ -47,13 +47,12 @@
     [super viewDidLoad];
 	//NSLog([NSString stringWithFormat:@"%@", @"View loaded, starting retrieval"]);
 	[self retrieveAMessageFromParse];
-	[self messageManager].testBody;
+	NSLog([self messageManager].testBody);
 	//NSLog([NSString stringWithFormat:@"TEST BODY: %@", [self messageManager].testBody]);
 	// Do any additional setup after loading the view.
 }
 
 -(void)retrieveAMessageFromParse {
-	//NSLog([NSString stringWithFormat:@"%@", @"Attempting to retrieve from Parse"]);
     PFQuery *query = [PFQuery queryWithClassName:@"MessageQueue"];
     [query whereKey:@"name" equalTo:@"MasterQueue"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -81,13 +80,13 @@
 						
 						_messageManager.messageBody = objects[0][@"body"];
 						_messageManager.receivedMessage = objects[0];
-						_receivedMessageLabel.text = [NSString stringWithFormat:@"%@", _messageManager.receivedMessage[@"body"]];
 						
-						//NSLog([NSString stringWithFormat:@"%@", _messageManager.receivedMessage[@"body"]]);
+						_receivedMessageLabel.text = [NSString stringWithFormat:@"%@", _messageManager.receivedMessage[@"body"]];
 						
 						//remove received message from the queue
 						[messagesRelation removeObject: _messageManager.receivedMessage];
 						[masterQueue saveInBackground];
+						
 						//also add message to User's received messages relation
 						PFUser *user = [PFUser currentUser];
 						PFRelation *userRelation = [user relationforKey:@"receivedMessages"];
@@ -106,7 +105,7 @@
 - (IBAction)rejectMessage:(id)sender
 {
 	NSLog(@"Rejected Message");
-	//go back to the compose view view
+	//go back to the compose view
 	UINavigationController *navController = self.navigationController;
 	[navController popViewControllerAnimated:YES];
 }
@@ -115,13 +114,15 @@
 {
 	NSLog(@"Accepted Message");
 	
+	//segue to the response view
 	[self performSegueWithIdentifier:@"composeResponseSegue" sender:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"composeResponseSegue"]){
 		
-		//Pushing the data from the JSON forward to populate the next view, no sense in doing the whole web request again
+		//Pushing the data forward in a janky manner
+		//TODO fix this
 		
         SSMResponseViewController *controller = (SSMResponseViewController *)segue.destinationViewController;
 		controller.receivedMessage = [self messageManager].receivedMessage;

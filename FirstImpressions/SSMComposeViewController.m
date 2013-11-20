@@ -49,28 +49,6 @@
 				NSLog(@"Couldn't save message");
 			}
 		}];
-		
-		//This is query stuff for the old version (writing to the same test message)
-//		PFQuery *query = [PFQuery queryWithClassName:@"Message"];
-//		[query whereKey:@"messageName" equalTo:@"Test Message"];
-//		[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//			if(!error){
-//				if([objects count] == 0){
-//					//save message for first time
-//					PFObject *parseMessage = [PFObject objectWithClassName:@"Message"];
-//					parseMessage[@"messageName"] = @"Test Message";
-//					parseMessage[@"body"] = _inputMessage.text;
-//					[parseMessage saveInBackground];
-//				} else {
-//					//update message
-//					PFObject *messageToUpdate = objects[0];
-//					messageToUpdate[@"body"] = _inputMessage.text;
-//					[messageToUpdate saveInBackground];
-//				}
-//			} else {
-//				//error
-//			}
-//		}];
 	}
 
 }
