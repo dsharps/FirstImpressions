@@ -15,7 +15,8 @@
 
 
 -(IBAction)sendAMessageToParse:(id)sender;
--(IBAction)retrieveAMessageFromParse:(id)sender;
+- (void)saveMessageToCurrentUserRelation:(id)message;
+- (void)saveMessageToQueue:(id)message;
 
 @end
 
@@ -23,43 +24,110 @@
 
 -(IBAction)sendAMessageToParse:(id)sender{
 	[_inputMessage resignFirstResponder];
-    PFQuery *query = [PFQuery queryWithClassName:@"Message"];
-    [query whereKey:@"messageName" equalTo:@"Test Message"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if(!error){
-            if([objects count] == 0){
-            //save message for first time
-                PFObject *parseMessage = [PFObject objectWithClassName:@"Message"];
-                parseMessage[@"messageName"] = @"Test Message";
-                parseMessage[@"body"] = _inputMessage.text;
-                [parseMessage saveInBackground];
-            } else {
-            //update message
-                PFObject *messageToUpdate = objects[0];
-                messageToUpdate[@"body"] = _inputMessage.text;
-                [messageToUpdate saveInBackground];
-            }
-        } else {
-            //error
-        }
-    }];
+	
+	//Validate input message
+	if ([_inputMessage.text  isEqual: @""]) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Message"
+														message:@"You have to write something!"
+													   delegate:self
+											  cancelButtonTitle:@"Ok"
+											  otherButtonTitles:nil, nil];
+		[alert show];
+	} else {
+		//Create and save the message
+		//TODO This is a bit sloppy, but it has to create the message object and add it to both the user's relations and the message queue
+		//It shouldn't let you proceed if any of those steps fail.
+		
+		NSLog(@"Sending message to Parse");
+		PFObject *newMessage = [PFObject objectWithClassName:@"Message"];
+		newMessage[@"sendingUser"] = [PFUser currentUser];
+		newMessage[@"body"] = _inputMessage.text;
+		[newMessage saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+			if (!error) {
+				[self saveMessageToCurrentUserRelation:newMessage];
+			} else {
+				NSLog(@"Couldn't save message");
+			}
+		}];
+		
+		//This is query stuff for the old version (writing to the same test message)
+//		PFQuery *query = [PFQuery queryWithClassName:@"Message"];
+//		[query whereKey:@"messageName" equalTo:@"Test Message"];
+//		[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//			if(!error){
+//				if([objects count] == 0){
+//					//save message for first time
+//					PFObject *parseMessage = [PFObject objectWithClassName:@"Message"];
+//					parseMessage[@"messageName"] = @"Test Message";
+//					parseMessage[@"body"] = _inputMessage.text;
+//					[parseMessage saveInBackground];
+//				} else {
+//					//update message
+//					PFObject *messageToUpdate = objects[0];
+//					messageToUpdate[@"body"] = _inputMessage.text;
+//					[messageToUpdate saveInBackground];
+//				}
+//			} else {
+//				//error
+//			}
+//		}];
+	}
+
 }
 
--(IBAction)retrieveAMessageFromParse:(id)sender{
-    PFQuery *query = [PFQuery queryWithClassName:@"Message"];
-    [query whereKey:@"messageName" equalTo:@"Test Message"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if(!error){
-            if([objects count] == 0){
-                //do nothing
-            } else {
-                //update message
-                PFObject *messageToShow = objects[0];
-                _outputMessage.text = [NSString stringWithFormat:@"%@",messageToShow[@"body"]];            }
-        } else {
-            //error
-        }
-    }];
+- (void)saveMessageToCurrentUserRelation:(id)message {
+	//Also save message to user's sentMessages relation
+	PFUser *user = [PFUser currentUser];
+	PFRelation *relation = [user relationforKey:@"sentMessages"];
+	[relation addObject:message];
+	[user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+		if (!error) {
+			
+			//ALSO save the message to the queue
+			[self saveMessageToQueue:message];
+			
+			//We've saved both the message and the relation
+			NSLog(@"Advancing view to received");
+			
+		} else {
+			NSLog(@"Couldn't save relation");
+		}
+	}];
+}
+
+- (void)saveMessageToQueue:(id)message {
+	PFQuery *query = [PFQuery queryWithClassName:@"MessageQueue"];
+	[query whereKey:@"name" equalTo:@"MasterQueue"];
+	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+		//NSLog(@"Launched query");
+		if(!error){
+			if([objects count] == 0){
+				//do nothing
+				NSLog(@"Couldn't find the queue");
+			} else {
+				PFObject *masterQueue = (id)objects[0];
+				//PFRelation *relation = [masterQueue relationForKey:@"messages"];
+				PFRelation *relation = [masterQueue relationforKey:@"messages"];
+				[relation addObject:message];
+				[masterQueue saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+					if (!error) {
+						[self segueToReceivedMessage];
+					} else {
+						NSLog(@"Couldn't save queue");
+					}
+				}];
+			}
+		} else {
+			//error
+			NSLog(@"Error retrieving queue from parse");
+		}
+	}];
+}
+
+- (void)segueToReceivedMessage {
+	//Activate segue
+	_inputMessage.text = @"";
+	[self performSegueWithIdentifier:@"ReceivedMessageSegue" sender:self];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

@@ -14,6 +14,26 @@
 
 @implementation SSMResponseViewController
 
+- (SSMDataManager *)messageManager
+{
+	NSLog(@"Setting up _messageManager in Response view");
+	if (!_messageManager) {
+		_messageManager = [[SSMDataManager alloc] init];
+	}
+	
+	return _messageManager;
+}
+
+- (IBAction)updateMessageWithResponse:(id)sender
+{
+	PFObject *messageToUpdate = self.receivedMessage;
+	messageToUpdate[@"response"] = _inputText.text;
+	messageToUpdate[@"respondingUser"] = [PFUser currentUser];
+	[messageToUpdate saveInBackground];
+	
+	[_inputText resignFirstResponder];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,6 +47,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+	NSLog([NSString stringWithFormat:@"MM Message Body: %@", self.messageManager.receivedMessage[@"body"]]);
+	//TODO Make the model work
+	//_receivedMessageLabel.text = self.messageManager.receivedMessage[@"body"];
+	_receivedMessageLabel.text = self.receivedMessage[@"body"];
 }
 
 - (void)didReceiveMemoryWarning

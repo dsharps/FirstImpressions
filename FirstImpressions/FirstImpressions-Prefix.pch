@@ -16,4 +16,6 @@
 	#import <CoreData/CoreData.h>
     #import "SSMCommunications.h"
     #import <Parse/Parse.h>
+	#import "DRSWebRequestManager.h"
+	#import "SSMDataManager.h"
 #endif

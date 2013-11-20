@@ -49,6 +49,9 @@
 		69695F3F183C5D6600319A8F /* SSMResponseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69695F3E183C5D6600319A8F /* SSMResponseViewController.m */; };
 		69695F42183C5D8100319A8F /* SSMReceivedMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69695F41183C5D8100319A8F /* SSMReceivedMessageViewController.m */; };
 		69695F45183C5DC800319A8F /* SSMConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69695F44183C5DC800319A8F /* SSMConversationViewController.m */; };
+		6981B42F183C605700E1524C /* SSMDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6981B42E183C605700E1524C /* SSMDataManager.m */; };
+		6981B434183C705A00E1524C /* DRSWebRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6981B430183C705A00E1524C /* DRSWebRequestManager.m */; };
+		6981B435183C705A00E1524C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6981B433183C705A00E1524C /* Reachability.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +119,12 @@
 		69695F41183C5D8100319A8F /* SSMReceivedMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSMReceivedMessageViewController.m; sourceTree = "<group>"; };
 		69695F43183C5DC800319A8F /* SSMConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSMConversationViewController.h; sourceTree = "<group>"; };
 		69695F44183C5DC800319A8F /* SSMConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSMConversationViewController.m; sourceTree = "<group>"; };
+		6981B42D183C605700E1524C /* SSMDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSMDataManager.h; sourceTree = "<group>"; };
+		6981B42E183C605700E1524C /* SSMDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSMDataManager.m; sourceTree = "<group>"; };
+		6981B430183C705A00E1524C /* DRSWebRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRSWebRequestManager.m; sourceTree = "<group>"; };
+		6981B431183C705A00E1524C /* DRSWebRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRSWebRequestManager.h; sourceTree = "<group>"; };
+		6981B432183C705A00E1524C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		6981B433183C705A00E1524C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +218,10 @@
 		693F64F21832F25E00917555 /* FirstImpressions */ = {
 			isa = PBXGroup;
 			children = (
+				6981B431183C705A00E1524C /* DRSWebRequestManager.h */,
+				6981B430183C705A00E1524C /* DRSWebRequestManager.m */,
+				6981B432183C705A00E1524C /* Reachability.h */,
+				6981B433183C705A00E1524C /* Reachability.m */,
 				37E5291C183A8A5900EECF9A /* SSMMessageCell.h */,
 				37E5291D183A8A5900EECF9A /* SSMMessageCell.m */,
 				37E52916183A872600EECF9A /* SSMMessage.h */,
@@ -222,6 +235,8 @@
 				69695F41183C5D8100319A8F /* SSMReceivedMessageViewController.m */,
 				69695F43183C5DC800319A8F /* SSMConversationViewController.h */,
 				69695F44183C5DC800319A8F /* SSMConversationViewController.m */,
+				6981B42D183C605700E1524C /* SSMDataManager.h */,
+				6981B42E183C605700E1524C /* SSMDataManager.m */,
 				693F64FC1832F25E00917555 /* DRSAppDelegate.m */,
 				37EE7EE4183C24A900B3E444 /* SSMCommunications.h */,
 				37EE7EE5183C24A900B3E444 /* SSMCommunications.m */,
@@ -369,10 +384,13 @@
 				37EE7ED9183C204A00B3E444 /* SSMLoginViewController.m in Sources */,
 				693F65001832F25E00917555 /* FirstImpressions.xcdatamodeld in Sources */,
 				37E52915183A864500EECF9A /* SSMHistoryViewController.m in Sources */,
+				6981B42F183C605700E1524C /* SSMDataManager.m in Sources */,
+				6981B435183C705A00E1524C /* Reachability.m in Sources */,
 				37EE7EE6183C24A900B3E444 /* SSMCommunications.m in Sources */,
 				37F833C61832FB4B00C9EDDD /* SSMComposeViewController.m in Sources */,
 				693F64FD1832F25E00917555 /* DRSAppDelegate.m in Sources */,
 				69695F42183C5D8100319A8F /* SSMReceivedMessageViewController.m in Sources */,
+				6981B434183C705A00E1524C /* DRSWebRequestManager.m in Sources */,
 				37E5291E183A8A5900EECF9A /* SSMMessageCell.m in Sources */,
 				69695F3F183C5D6600319A8F /* SSMResponseViewController.m in Sources */,
 				693F64F91832F25E00917555 /* main.m in Sources */,

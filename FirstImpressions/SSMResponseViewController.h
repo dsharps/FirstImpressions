@@ -10,4 +10,9 @@
 
 @interface SSMResponseViewController : UIViewController
 
+@property (nonatomic, strong) SSMDataManager *messageManager;
+@property (nonatomic, strong) IBOutlet UILabel *receivedMessageLabel;
+@property (nonatomic, strong) IBOutlet UITextView *inputText;
+@property (nonatomic, strong) PFObject *receivedMessage;
+
 @end

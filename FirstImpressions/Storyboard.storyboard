@@ -95,10 +95,10 @@
             </objects>
             <point key="canvasLocation" x="419" y="-958"/>
         </scene>
-        <!--Compose View Controller - Item-->
+        <!--View Controller - ???-->
         <scene sceneID="TCQ-3p-gwH">
             <objects>
-                <viewController id="nb2-5Z-mQn" customClass="SSMComposeViewController" sceneMemberID="viewController">
+                <viewController id="nb2-5Z-mQn" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yzh-gF-4Rz"/>
                         <viewControllerLayoutGuide type="bottom" id="VRX-Is-T4d"/>
@@ -108,7 +108,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="BEf-Pe-yUs"/>
+                    <tabBarItem key="tabBarItem" title="???" id="BEf-Pe-yUs"/>
                     <connections>
                         <segue destination="ZFg-U1-hg6" kind="push" id="ArT-rh-oVm"/>
                     </connections>
@@ -117,10 +117,10 @@
             </objects>
             <point key="canvasLocation" x="1023" y="-958"/>
         </scene>
-        <!--View Controller - Item 1-->
+        <!--Compose View Controller - Blank-->
         <scene sceneID="SLS-FE-Der">
             <objects>
-                <viewController id="c7O-x5-fef" sceneMemberID="viewController">
+                <viewController id="c7O-x5-fef" customClass="SSMComposeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2vN-zo-Nls"/>
                         <viewControllerLayoutGuide type="bottom" id="GvH-hS-nYX"/>
@@ -128,22 +128,54 @@
                     <view key="view" contentMode="scaleToFill" id="2HW-5W-1vm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Write a message!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yC2-ZF-T1H">
+                                <rect key="frame" x="20" y="71" width="133" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NYt-Sn-qit">
+                                <rect key="frame" x="220" y="233" width="80" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.18167800410000001" blue="0.34421281679999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Send">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendAMessageToParse:" destination="71K-mC-1zX" eventType="touchUpInside" id="01h-31-TQH"/>
+                                    <action selector="sendAMessageToParse:" destination="c7O-x5-fef" eventType="touchUpInside" id="eJl-Kb-OY8"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qfF-TE-oDD">
+                                <rect key="frame" x="20" y="100" width="280" height="125"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.85294659799999994" blue="0.9161399267" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="3aY-QB-kg5"/>
+                    <tabBarItem key="tabBarItem" title="Blank" id="3aY-QB-kg5"/>
                     <connections>
-                        <segue destination="ZFg-U1-hg6" kind="push" id="rbm-h4-OUX"/>
+                        <outlet property="inputMessage" destination="qfF-TE-oDD" id="OPu-tB-Q4c"/>
+                        <segue destination="ZFg-U1-hg6" kind="push" identifier="ReceivedMessageSegue" id="rbm-h4-OUX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1t1-m8-LnI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1023" y="-166"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar Controller - Compose-->
         <scene sceneID="1IM-b2-TZc">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="3mg-PF-HhB" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="NaG-Z2-lfT"/>
+                    <navigationItem key="navigationItem" title="Compose" id="NaG-Z2-lfT"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="q4m-3T-Dyk">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
@@ -179,7 +211,7 @@
             </objects>
             <point key="canvasLocation" x="419" y="606"/>
         </scene>
-        <!--View Controller - Item 2-->
+        <!--View Controller - Would You Rather-->
         <scene sceneID="XCR-wI-UNz">
             <objects>
                 <viewController id="mdi-5i-PVo" sceneMemberID="viewController">
@@ -192,7 +224,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="NDv-3w-O9j"/>
+                    <tabBarItem key="tabBarItem" title="Would You Rather" id="NDv-3w-O9j"/>
                     <connections>
                         <segue destination="ZFg-U1-hg6" kind="push" id="Shm-Kn-jIc"/>
                     </connections>
@@ -201,7 +233,7 @@
             </objects>
             <point key="canvasLocation" x="1023" y="606"/>
         </scene>
-        <!--Received Message View Controller-->
+        <!--Received Message View Controller - Respond?-->
         <scene sceneID="Rvx-1D-XRX">
             <objects>
                 <viewController id="ZFg-U1-hg6" customClass="SSMReceivedMessageViewController" sceneMemberID="viewController">
@@ -212,18 +244,55 @@
                     <view key="view" contentMode="scaleToFill" id="EU2-Va-mle">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="t3I-9M-cbG">
+                                <rect key="frame" x="20" y="97" width="280" height="131"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.93040497448979598" green="0.93040497448979598" blue="0.93040497448979598" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afD-bN-9K0">
+                                <rect key="frame" x="175" y="269" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.20633054283492774" green="0.58924585459183676" blue="0.23989168616806206" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Respond">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="respondToMessage:" destination="ZFg-U1-hg6" eventType="touchUpInside" id="piv-oM-WI2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sgx-qe-ZSY">
+                                <rect key="frame" x="53" y="269" width="93" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.89449139030612246" green="0.28369478653788111" blue="0.15705565053845133" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Reject">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="rejectMessage:" destination="ZFg-U1-hg6" eventType="touchUpInside" id="nxm-B3-oCB"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="doN-73-LzN"/>
+                    <navigationItem key="navigationItem" title="Respond?" id="doN-73-LzN"/>
                     <connections>
-                        <segue destination="qWL-fx-9Xv" kind="push" id="2R3-ef-fSY"/>
+                        <outlet property="receivedMessageLabel" destination="t3I-9M-cbG" id="iZ6-h8-yXE"/>
+                        <segue destination="qWL-fx-9Xv" kind="push" identifier="composeResponseSegue" id="2R3-ef-fSY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VjR-D2-JGL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1635" y="-166"/>
         </scene>
-        <!--Response View Controller-->
+        <!--Response View Controller - Write a response!-->
         <scene sceneID="nCA-Ag-hRt">
             <objects>
                 <viewController id="qWL-fx-9Xv" customClass="SSMResponseViewController" sceneMemberID="viewController">
@@ -234,9 +303,59 @@
                     <view key="view" contentMode="scaleToFill" id="RKc-Si-9EE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Ith-9a-UB9">
+                                <rect key="frame" x="20" y="294" width="280" height="131"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.93040497450000004" green="0.93040497450000004" blue="0.93040497450000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxr-5f-obe">
+                                <rect key="frame" x="220" y="238" width="80" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.18167800410000001" blue="0.34421281679999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Send">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendAMessageToParse:" destination="71K-mC-1zX" eventType="touchUpInside" id="n7S-Io-lbB"/>
+                                    <action selector="updateMessageWithResponse:" destination="qWL-fx-9Xv" eventType="touchUpInside" id="FfI-mg-Pc3"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d4p-w6-tQ7">
+                                <rect key="frame" x="20" y="105" width="280" height="125"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.85294659799999994" blue="0.9161399267" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your response..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nH0-1G-67H">
+                                <rect key="frame" x="20" y="76" width="124" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Original message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fK-Sz-tVY">
+                                <rect key="frame" x="20" y="265" width="133" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="7xE-Qf-bp9"/>
+                    <navigationItem key="navigationItem" title="Write a response!" id="7xE-Qf-bp9"/>
+                    <connections>
+                        <outlet property="inputText" destination="d4p-w6-tQ7" id="Ubq-HM-NeI"/>
+                        <outlet property="receivedMessageLabel" destination="Ith-9a-UB9" id="fqY-z6-Be9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eqO-jp-idL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -280,7 +399,7 @@
                                     <outlet property="bodyLabel" destination="KLK-pI-7sE" id="lxv-jE-YgI"/>
                                     <outlet property="iconForSender" destination="8ao-rh-S5Q" id="8My-Tb-ekZ"/>
                                     <outlet property="senderLabel" destination="ZNW-sv-d6X" id="mHI-cU-sHA"/>
-                                    <segue destination="HaM-Tq-Mac" kind="push" id="ePz-t7-YtL"/>
+                                    <segue destination="HaM-Tq-Mac" kind="push" identifier="ConversationViewSegue" id="ePz-t7-YtL"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -289,9 +408,25 @@
                             <outlet property="delegate" destination="2Rq-go-3xC" id="wp6-DE-c8x"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Messages" id="kef-ka-9Xz"/>
+                    <navigationItem key="navigationItem" title="Messages" id="kef-ka-9Xz">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="weL-qk-Zci">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="BpL-9W-wm7">
+                                <rect key="frame" x="233" y="5" width="71" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.15861444453437493" green="0.65915975765306123" blue="0.26867356255908609" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <state key="normal" title="New">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="segueToComposeView:" destination="2Rq-go-3xC" eventType="touchUpInside" id="qQ5-Vx-Akp"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <segue destination="3mg-PF-HhB" kind="push" id="j4P-sc-0d9"/>
+                        <segue destination="3mg-PF-HhB" kind="push" identifier="composeNewMessageSegue" id="j4P-sc-0d9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DA1-aQ-TW4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -360,6 +495,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ArT-rh-oVm"/>
+        <segue reference="rbm-h4-OUX"/>
     </inferredMetricsTieBreakers>
 </document>

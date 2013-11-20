@@ -56,7 +56,7 @@
     
 	// Did we login successfully ?
 	if (loggedIn) {
-        
+        //NSLog([NSString stringWithFormat:@"%@", [PFUser currentUser].username]);
 		[self performSegueWithIdentifier:@"LoginSuccessful" sender:self];
 	} else {
 		// Show error alert

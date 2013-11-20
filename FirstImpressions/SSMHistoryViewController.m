@@ -16,6 +16,14 @@
 
 @implementation SSMHistoryViewController
 
+- (IBAction)segueToComposeView:(id)sender
+{
+	NSLog(@"Advancing view");
+	//Activate segue
+	[self performSegueWithIdentifier:@"composeNewMessageSegue" sender:self];
+
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
