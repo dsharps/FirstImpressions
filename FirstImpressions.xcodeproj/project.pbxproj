@@ -31,8 +31,6 @@
 		37F833D61832FF1700C9EDDD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F833D51832FF1700C9EDDD /* Security.framework */; };
 		37F833D81832FF2000C9EDDD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F833D71832FF2000C9EDDD /* StoreKit.framework */; };
 		37F833DA1832FF2A00C9EDDD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F833D91832FF2A00C9EDDD /* SystemConfiguration.framework */; };
-		6907317B1832FBD100752681 /* DRSWebRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 690731771832FBD100752681 /* DRSWebRequestManager.m */; };
-		6907317C1832FBD100752681 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6907317A1832FBD100752681 /* Reachability.m */; };
 		693F64EB1832F25E00917555 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693F64EA1832F25E00917555 /* Foundation.framework */; };
 		693F64ED1832F25E00917555 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693F64EC1832F25E00917555 /* CoreGraphics.framework */; };
 		693F64EF1832F25E00917555 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693F64EE1832F25E00917555 /* UIKit.framework */; };
@@ -91,10 +89,6 @@
 		37F833D51832FF1700C9EDDD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		37F833D71832FF2000C9EDDD /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		37F833D91832FF2A00C9EDDD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		690731771832FBD100752681 /* DRSWebRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRSWebRequestManager.m; sourceTree = "<group>"; };
-		690731781832FBD100752681 /* DRSWebRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRSWebRequestManager.h; sourceTree = "<group>"; };
-		690731791832FBD100752681 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		6907317A1832FBD100752681 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		693F64E71832F25D00917555 /* FirstImpressions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirstImpressions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		693F64EA1832F25E00917555 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		693F64EC1832F25E00917555 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -212,10 +206,6 @@
 				37E52917183A872600EECF9A /* SSMMessage.m */,
 				37E52913183A864500EECF9A /* SSMMessagesViewController.h */,
 				37E52914183A864500EECF9A /* SSMMessagesViewController.m */,
-				690731781832FBD100752681 /* DRSWebRequestManager.h */,
-				690731771832FBD100752681 /* DRSWebRequestManager.m */,
-				690731791832FBD100752681 /* Reachability.h */,
-				6907317A1832FBD100752681 /* Reachability.m */,
 				693F64FB1832F25E00917555 /* DRSAppDelegate.h */,
 				693F64FC1832F25E00917555 /* DRSAppDelegate.m */,
 				37EE7EE4183C24A900B3E444 /* SSMCommunications.h */,
@@ -365,10 +355,8 @@
 				693F65001832F25E00917555 /* FirstImpressions.xcdatamodeld in Sources */,
 				37E52915183A864500EECF9A /* SSMMessagesViewController.m in Sources */,
 				37EE7EE6183C24A900B3E444 /* SSMCommunications.m in Sources */,
-				6907317B1832FBD100752681 /* DRSWebRequestManager.m in Sources */,
 				37F833C61832FB4B00C9EDDD /* SSMMainViewController.m in Sources */,
 				693F64FD1832F25E00917555 /* DRSAppDelegate.m in Sources */,
-				6907317C1832FBD100752681 /* Reachability.m in Sources */,
 				37E5291E183A8A5900EECF9A /* SSMMessageCell.m in Sources */,
 				693F64F91832F25E00917555 /* main.m in Sources */,
 				37E52918183A872600EECF9A /* SSMMessage.m in Sources */,
