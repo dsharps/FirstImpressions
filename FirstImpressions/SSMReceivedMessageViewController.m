@@ -79,7 +79,7 @@
 						//TODO make the model work
 						
 						//get the oldest message and update label
-						//NSLog([NSString stringWithFormat:@"Found %d messages", objects.count]);
+						NSLog([NSString stringWithFormat:@"Found %d messages", objects.count]);
 						//NSLog(objects[0][@"body"]);
 						//NSLog([NSString stringWithFormat:@"Message body: %@", _messageManager.testBody]);
 						

@@ -32,6 +32,19 @@
 	[messageToUpdate saveInBackground];
 	
 	[_inputText resignFirstResponder];
+	
+	[self popToComposeView];
+}
+
+- (void)popToComposeView
+{
+	NSLog(@"Returning to Compose view");
+	//go back to the compose view
+	UINavigationController *navController = self.navigationController;
+	int numberOfViews = [[navController viewControllers] count];
+	if (numberOfViews >= 3) {
+		[navController popToViewController:[[navController viewControllers] objectAtIndex:numberOfViews-3] animated:YES];
+	}
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
