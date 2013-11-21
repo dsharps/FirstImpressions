@@ -52,6 +52,7 @@
 		6981B42F183C605700E1524C /* SSMDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6981B42E183C605700E1524C /* SSMDataManager.m */; };
 		6981B434183C705A00E1524C /* DRSWebRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6981B430183C705A00E1524C /* DRSWebRequestManager.m */; };
 		6981B435183C705A00E1524C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6981B433183C705A00E1524C /* Reachability.m */; };
+		C3F6052D183E076F00186827 /* AJBDefaultMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F6052C183E076F00186827 /* AJBDefaultMessageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +126,8 @@
 		6981B431183C705A00E1524C /* DRSWebRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRSWebRequestManager.h; sourceTree = "<group>"; };
 		6981B432183C705A00E1524C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		6981B433183C705A00E1524C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		C3F6052B183E076F00186827 /* AJBDefaultMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AJBDefaultMessageViewController.h; path = ../AJBDefaultMessageViewController.h; sourceTree = "<group>"; };
+		C3F6052C183E076F00186827 /* AJBDefaultMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AJBDefaultMessageViewController.m; path = ../AJBDefaultMessageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +221,8 @@
 		693F64F21832F25E00917555 /* FirstImpressions */ = {
 			isa = PBXGroup;
 			children = (
+				C3F6052B183E076F00186827 /* AJBDefaultMessageViewController.h */,
+				C3F6052C183E076F00186827 /* AJBDefaultMessageViewController.m */,
 				6981B431183C705A00E1524C /* DRSWebRequestManager.h */,
 				6981B430183C705A00E1524C /* DRSWebRequestManager.m */,
 				6981B432183C705A00E1524C /* Reachability.h */,
@@ -387,6 +392,7 @@
 				6981B42F183C605700E1524C /* SSMDataManager.m in Sources */,
 				6981B435183C705A00E1524C /* Reachability.m in Sources */,
 				37EE7EE6183C24A900B3E444 /* SSMCommunications.m in Sources */,
+				C3F6052D183E076F00186827 /* AJBDefaultMessageViewController.m in Sources */,
 				37F833C61832FB4B00C9EDDD /* SSMComposeViewController.m in Sources */,
 				693F64FD1832F25E00917555 /* DRSAppDelegate.m in Sources */,
 				69695F42183C5D8100319A8F /* SSMReceivedMessageViewController.m in Sources */,
