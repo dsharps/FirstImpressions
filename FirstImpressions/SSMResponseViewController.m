@@ -53,6 +53,11 @@
 	_receivedMessageLabel.text = self.receivedMessage[@"body"];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+	[self navigationController].navigationBarHidden = NO;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
