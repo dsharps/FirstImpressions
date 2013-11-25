@@ -12,11 +12,14 @@
 
 @property (nonatomic, strong) IBOutlet UITextView *inputMessage;
 @property (nonatomic, strong) IBOutlet UILabel *outputMessage;
+@property (nonatomic, retain) UIToolbar *keyboardToolbar;
 
 
 -(IBAction)sendAMessageToParse:(id)sender;
 - (void)saveMessageToCurrentUserRelation:(id)message;
 - (void)saveMessageToQueue:(id)message;
+- (void)setupKeyboardToolbar;
+- (void)resignKeyboard:(id)sender;
 
 @end
 
@@ -102,6 +105,32 @@
 	}];
 }
 
+
+///////////////////   keyboard toolbar stuff /////////////////////
+
+- (void)setupKeyboardToolbar
+{
+    if (self.keyboardToolbar == nil) {
+        self.keyboardToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
+        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"done"
+                                                                       style:UIBarButtonItemStyleBordered
+                                                                      target:self
+                                                                      action:@selector(resignKeyboard:)];
+        UIBarButtonItem *extraspace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                                    target:self
+                                                                                    action:nil];
+        [self.keyboardToolbar setItems:[[NSArray alloc] initWithObjects:extraspace, doneButton, nil]];
+    }
+}
+- (void)resignKeyboard:(id)sender
+{
+    [_inputMessage resignFirstResponder];
+}
+
+
+
+//////////////////////////////////////////////////////////////////
+
 - (void)segueToReceivedMessage {
 	//Activate segue
 	_inputMessage.text = @"";
@@ -126,6 +155,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [self setupKeyboardToolbar];
+    _inputMessage.inputAccessoryView = self.keyboardToolbar;
 }
 
 - (void)didReceiveMemoryWarning
