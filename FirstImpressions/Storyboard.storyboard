@@ -300,10 +300,10 @@
             </objects>
             <point key="canvasLocation" x="419" y="606"/>
         </scene>
-        <!--View Controller - Would You Rather-->
+        <!--Would You Rather View Controller - Would You Rather-->
         <scene sceneID="XCR-wI-UNz">
             <objects>
-                <viewController id="mdi-5i-PVo" sceneMemberID="viewController">
+                <viewController id="mdi-5i-PVo" customClass="SSMWouldYouRatherViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5iH-3Q-2uS"/>
                         <viewControllerLayoutGuide type="bottom" id="FWG-n7-Gyo"/>
