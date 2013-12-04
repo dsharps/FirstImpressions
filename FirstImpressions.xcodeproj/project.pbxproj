@@ -529,6 +529,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Samantha Merritt (2QPMPU523K)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					../FirstImpressions,
@@ -540,6 +541,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -550,6 +552,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Samantha Merritt (2QPMPU523K)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					../FirstImpressions,
@@ -561,6 +564,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

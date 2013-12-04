@@ -19,12 +19,30 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Register for push notifications
+    [application registerForRemoteNotificationTypes:
+     UIRemoteNotificationTypeBadge |
+     UIRemoteNotificationTypeAlert |
+     UIRemoteNotificationTypeSound];
     [Parse setApplicationId:@"Y7seXmEGWI7umFdEign2YEaZznaUw2impbRbSDVo"
                   clientKey:@"R0WflgEI5ck96b4abx1kdU07SwhhWrCGtYQ6Hd3c"];
     [PFFacebookUtils initializeFacebook];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     return YES;
+}
+
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:newDeviceToken];
+    [currentInstallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
