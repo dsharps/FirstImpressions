@@ -15,6 +15,7 @@
 
 @property (nonatomic, strong) SSMDataManager *messageManager;
 @property (nonatomic, strong) IBOutlet UILabel *receivedMessageLabel;
+@property (nonatomic, strong) PFObject *receivedMessage;
 
 - (IBAction)rejectMessage:(id)sender;
 - (IBAction)respondToMessage:(id)sender;

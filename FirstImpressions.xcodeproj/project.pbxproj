@@ -52,6 +52,7 @@
 		6981B42F183C605700E1524C /* SSMDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6981B42E183C605700E1524C /* SSMDataManager.m */; };
 		6981B434183C705A00E1524C /* DRSWebRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6981B430183C705A00E1524C /* DRSWebRequestManager.m */; };
 		6981B435183C705A00E1524C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6981B433183C705A00E1524C /* Reachability.m */; };
+		C318CB88184EABC700627FCD /* SADParseDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C318CB87184EABC700627FCD /* SADParseDataModel.m */; };
 		C384BE1B184306DF001B9CF4 /* SSMWouldYouRatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C384BE1A184306DF001B9CF4 /* SSMWouldYouRatherViewController.m */; };
 		C3F6052D183E076F00186827 /* AJBDefaultMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F6052C183E076F00186827 /* AJBDefaultMessageViewController.m */; };
 /* End PBXBuildFile section */
@@ -127,6 +128,8 @@
 		6981B431183C705A00E1524C /* DRSWebRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRSWebRequestManager.h; sourceTree = "<group>"; };
 		6981B432183C705A00E1524C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		6981B433183C705A00E1524C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		C318CB86184EABC700627FCD /* SADParseDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SADParseDataModel.h; sourceTree = "<group>"; };
+		C318CB87184EABC700627FCD /* SADParseDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SADParseDataModel.m; sourceTree = "<group>"; };
 		C384BE19184306DF001B9CF4 /* SSMWouldYouRatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSMWouldYouRatherViewController.h; sourceTree = "<group>"; };
 		C384BE1A184306DF001B9CF4 /* SSMWouldYouRatherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSMWouldYouRatherViewController.m; sourceTree = "<group>"; };
 		C3F6052B183E076F00186827 /* AJBDefaultMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AJBDefaultMessageViewController.h; path = ../AJBDefaultMessageViewController.h; sourceTree = "<group>"; };
@@ -247,6 +250,8 @@
 				69695F44183C5DC800319A8F /* SSMConversationViewController.m */,
 				6981B42D183C605700E1524C /* SSMDataManager.h */,
 				6981B42E183C605700E1524C /* SSMDataManager.m */,
+				C318CB86184EABC700627FCD /* SADParseDataModel.h */,
+				C318CB87184EABC700627FCD /* SADParseDataModel.m */,
 				693F64FC1832F25E00917555 /* DRSAppDelegate.m */,
 				37EE7EE4183C24A900B3E444 /* SSMCommunications.h */,
 				37EE7EE5183C24A900B3E444 /* SSMCommunications.m */,
@@ -407,6 +412,7 @@
 				69695F3F183C5D6600319A8F /* SSMResponseViewController.m in Sources */,
 				693F64F91832F25E00917555 /* main.m in Sources */,
 				37E52918183A872600EECF9A /* SSMMessage.m in Sources */,
+				C318CB88184EABC700627FCD /* SADParseDataModel.m in Sources */,
 				69695F45183C5DC800319A8F /* SSMConversationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SADParseDataModel.h"
 
 @interface SSMComposeViewController : UIViewController
+
+@property (nonatomic, strong) SADParseDataModel *parseManager;
 
 @end

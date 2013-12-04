@@ -7,11 +7,11 @@
 //
 
 #import "SSMComposeViewController.h"
+#define sendMessageFailedAlertTag 0
 
 @interface SSMComposeViewController ()
 
 @property (nonatomic, strong) IBOutlet UITextView *inputMessage;
-@property (nonatomic, strong) IBOutlet UILabel *outputMessage;
 @property (nonatomic, retain) UIToolbar *keyboardToolbar;
 
 
@@ -25,6 +25,16 @@
 
 @implementation SSMComposeViewController
 
+- (SADParseDataModel *)parseManager
+{
+	NSLog(@"Setting up _messageManager in Response view");
+	if (!_parseManager) {
+		_parseManager = [[SADParseDataModel alloc] init];
+	}
+	
+	return _parseManager;
+}
+
 -(IBAction)sendAMessageToParse:(id)sender{
 	[_inputMessage resignFirstResponder];
 	
@@ -37,73 +47,36 @@
 											  otherButtonTitles:nil, nil];
 		[alert show];
 	} else {
-		//Create and save the message
-		//TODO This is a bit sloppy, but it has to create the message object and add it to both the user's relations and the message queue
-		//It shouldn't let you proceed if any of those steps fail.
+        
+        NSLog(@"we are at beginning");
+        BOOL flag = [self.parseManager sendAMessageToParse:_inputMessage.text];
+        NSLog(@"we are at beginning of conditional");
+
+        if (!flag) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Message"
+                                                            message:@"Sending failed"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:@"Retry", nil];
+            alert.tag = sendMessageFailedAlertTag;
+            [alert show];
+        } else {
+            [self segueToReceivedMessage];
+        }
 		
-		NSLog(@"Sending message to Parse");
-		PFObject *newMessage = [PFObject objectWithClassName:@"Message"];
-		newMessage[@"sendingUser"] = [PFUser currentUser];
-		newMessage[@"body"] = _inputMessage.text;
-		[newMessage saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-			if (!error) {
-				[self saveMessageToCurrentUserRelation:newMessage];
-			} else {
-				NSLog(@"Couldn't save message");
-			}
-		}];
 	}
 
 }
 
-- (void)saveMessageToCurrentUserRelation:(id)message {
-	//Also save message to user's sentMessages relation
-	PFUser *user = [PFUser currentUser];
-	PFRelation *relation = [user relationforKey:@"sentMessages"];
-	[relation addObject:message];
-	[user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-		if (!error) {
-			
-			//ALSO save the message to the queue
-			[self saveMessageToQueue:message];
-			
-			//We've saved both the message and the relation
-			NSLog(@"Advancing view to received");
-			
-		} else {
-			NSLog(@"Couldn't save relation");
-		}
-	}];
+-(void)alertView:(UIAlertView*)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (alertView.tag == sendMessageFailedAlertTag) {
+        if (buttonIndex == 1) {
+            [self sendAMessageToParse:nil];
+        }
+    }
 }
 
-- (void)saveMessageToQueue:(id)message {
-	PFQuery *query = [PFQuery queryWithClassName:@"MessageQueue"];
-	[query whereKey:@"name" equalTo:@"MasterQueue"];
-	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-		//NSLog(@"Launched query");
-		if(!error){
-			if([objects count] == 0){
-				//do nothing
-				NSLog(@"Couldn't find the queue");
-			} else {
-				PFObject *masterQueue = (id)objects[0];
-				//PFRelation *relation = [masterQueue relationForKey:@"messages"];
-				PFRelation *relation = [masterQueue relationforKey:@"messages"];
-				[relation addObject:message];
-				[masterQueue saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-					if (!error) {
-						[self segueToReceivedMessage];
-					} else {
-						NSLog(@"Couldn't save queue");
-					}
-				}];
-			}
-		} else {
-			//error
-			NSLog(@"Error retrieving queue from parse");
-		}
-	}];
-}
+
 
 
 ///////////////////   keyboard toolbar stuff /////////////////////
