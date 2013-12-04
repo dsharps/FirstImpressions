@@ -29,4 +29,18 @@
 	return self;
 }
 
+- (PFObject *)receivedMessage
+{
+	//overriding getter
+	return [[NSUserDefaults standardUserDefaults] objectForKey:@"receivedMessage"];
+}
+
+- (void)setReceivedMessage:(PFObject *)receivedMessage
+{
+	//overriding setter
+	NSLog(@"Saved");
+	[[NSUserDefaults standardUserDefaults] setObject:receivedMessage forKey:@"receivedMessage"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 @end

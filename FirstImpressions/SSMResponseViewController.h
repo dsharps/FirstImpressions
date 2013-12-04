@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SADParseDataModel.h"
 
 @interface SSMResponseViewController : UIViewController
 
@@ -14,5 +15,6 @@
 @property (nonatomic, strong) IBOutlet UILabel *receivedMessageLabel;
 @property (nonatomic, strong) IBOutlet UITextView *inputText;
 @property (nonatomic, strong) PFObject *receivedMessage;
+@property (nonatomic, strong) SADParseDataModel *parseManager;
 
 @end

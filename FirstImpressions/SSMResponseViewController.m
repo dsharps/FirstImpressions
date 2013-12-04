@@ -24,12 +24,19 @@
 	return _messageManager;
 }
 
+- (SADParseDataModel *)parseManager
+{
+	NSLog(@"Setting up _messageManager in Response view");
+	if (!_parseManager) {
+		_parseManager = [[SADParseDataModel alloc] init];
+	}
+	
+	return _parseManager;
+}
+
 - (IBAction)updateMessageWithResponse:(id)sender
 {
-	PFObject *messageToUpdate = self.receivedMessage;
-	messageToUpdate[@"response"] = _inputText.text;
-	messageToUpdate[@"respondingUser"] = [PFUser currentUser];
-	[messageToUpdate saveInBackground];
+	[self.parseManager updateMessage:_receivedMessage WithResponse:_inputText.text];
 	
 	[_inputText resignFirstResponder];
 	
@@ -42,7 +49,7 @@
 	//go back to the compose view
 	UINavigationController *navController = self.navigationController;
 	int numberOfViews = [[navController viewControllers] count];
-	if (numberOfViews >= 3) {
+	if (numberOfViews > 3) {
 		[navController popToViewController:[[navController viewControllers] objectAtIndex:numberOfViews-3] animated:YES];
 	}
 }
@@ -61,8 +68,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 	NSLog([NSString stringWithFormat:@"MM Message Body: %@", self.messageManager.receivedMessage[@"body"]]);
-	//TODO Make the model work
-	//_receivedMessageLabel.text = self.messageManager.receivedMessage[@"body"];
+
+	//load the message text that we set from the previous view
 	_receivedMessageLabel.text = self.receivedMessage[@"body"];
 }
 
