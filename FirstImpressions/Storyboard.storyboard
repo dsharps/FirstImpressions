@@ -107,8 +107,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCj-ZY-Hcp">
-                                <rect key="frame" x="40" y="73" width="133" height="52"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="240" translatesAutoresizingMaskIntoConstraints="NO" id="sCj-ZY-Hcp">
+                                <rect key="frame" x="40" y="73" width="240" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -151,6 +151,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Templates" id="BEf-Pe-yUs"/>
                     <connections>
+                        <outlet property="DefaultMessage" destination="sCj-ZY-Hcp" id="ZNg-LM-Or4"/>
                         <segue destination="ZFg-U1-hg6" kind="push" id="ArT-rh-oVm"/>
                     </connections>
                 </viewController>
@@ -626,6 +627,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Shm-Kn-jIc"/>
+        <segue reference="ArT-rh-oVm"/>
     </inferredMetricsTieBreakers>
 </document>
