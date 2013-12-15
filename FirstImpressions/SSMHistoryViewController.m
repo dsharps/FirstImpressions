@@ -10,11 +10,13 @@
 #import "SSMMessage.h"
 #import "SSMMessageCell.h"
 #import "SADParseDataModel.h"
+#import "SSMConversationViewController.h"
 
 @interface SSMHistoryViewController ()
 
 @property (nonatomic, strong) SADParseDataModel *parseManager;
 @property (nonatomic, strong) __block NSArray *messagesArray;
+@property (nonatomic) NSInteger messageIndex;
 
 @end
 
@@ -114,9 +116,6 @@
     }
     
     
-
-    
-    
     /*SSMMessageCell *cell = (SSMMessageCell *)[tableView dequeueReusableCellWithIdentifier:@"MessageCell"];
     
     SSMMessage *message = (self.messages)[indexPath.row];
@@ -126,6 +125,19 @@
     cell.iconForSender.image = [UIImage imageNamed:@"icon1.jpg"];
     */
     return cell;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	self.messageIndex = indexPath.row;
+    [self performSegueWithIdentifier:@"conversationViewSegue" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"conversationViewSegue"]){
+        SSMConversationViewController *controller = (SSMConversationViewController *)segue.destinationViewController;
+		controller.message = [_messagesArray objectAtIndex:self.messageIndex];
+    }
 }
 
 - (UIImage *)imageForSender

@@ -10,4 +10,8 @@
 
 @interface SSMConversationViewController : UIViewController
 
+@property (nonatomic, strong) PFObject *message;
+@property (nonatomic, strong) IBOutlet UITextView* messageBody;
+@property (nonatomic, strong) IBOutlet UITextView* messageResponse;
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "SSMConversationViewController.h"
+#import <Parse/Parse.h>
 
 @interface SSMConversationViewController ()
 
@@ -26,6 +27,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	_messageBody.text = _message[@"body"];
+	_messageResponse.text = _message[@"response"];
+	
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+	
+	[formatter setDateStyle:NSDateFormatterLongStyle];
+	
+	NSString *messageDateString = [formatter stringFromDate:_message.createdAt];
+	NSLog(@"Message date string: %@", messageDateString);
+	self.title = messageDateString;
 	// Do any additional setup after loading the view.
 }
 
