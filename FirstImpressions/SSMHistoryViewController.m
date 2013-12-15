@@ -51,17 +51,6 @@
 {
     [super viewDidLoad];
     // Seque to the Image Wall
-    _messages = [NSMutableArray arrayWithCapacity:20];
-    
-    SSMMessage *message = [[SSMMessage alloc] init];
-    message.body = @"This is the entire content of my message";
-    message.sender = @"Unhappy Owl";
-    [_messages addObject:message];
-    
-    message = [[SSMMessage alloc] init];
-    message.body = @"Would you rather meet Harry Potter or Ron Weasley?";
-    message.sender = @"Unhappy Penguin";
-    [_messages addObject:message];
 
 	[_parseManager getAllMessagesForCurrentUserWithBlock:^(NSArray *results) {
 		_messagesArray = results;
@@ -91,19 +80,44 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.messages count];
+    return [_messagesArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SSMMessageCell *cell = (SSMMessageCell *)[tableView dequeueReusableCellWithIdentifier:@"MessageCell"];
+    
+    static NSString *CellIdentifier = @"MessageCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UILabel *messageLabel = (id) [cell viewWithTag:0];
+    UILabel *dateLabel = (id) [cell viewWithTag:1];
+    UIImage *image = (id) [cell viewWithTag:2];
+    
+    PFObject *temp = [_messagesArray objectAtIndex:indexPath.row];
+    messageLabel.text = temp[@"body"];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterLongStyle];
+    dateLabel.text = [formatter stringFromDate:temp.createdAt];
+    
+    if ([PFUser currentUser] == temp[@"sendingUser"]) {
+        // sent message image here
+        NSLog(@"sent message");
+    } else {
+        // received message image here
+        NSLog(@"received message");
+    }
+    
+    
+
+    
+    
+    /*SSMMessageCell *cell = (SSMMessageCell *)[tableView dequeueReusableCellWithIdentifier:@"MessageCell"];
     
     SSMMessage *message = (self.messages)[indexPath.row];
     cell.senderLabel.text = message.sender;
     cell.bodyLabel.text = message.body;
     
     cell.iconForSender.image = [UIImage imageNamed:@"icon1.jpg"];
-    
+    */
     return cell;
 }
 
