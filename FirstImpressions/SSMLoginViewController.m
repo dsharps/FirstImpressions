@@ -45,6 +45,8 @@
 {
     // Disable the Login button to prevent multiple touches
     [_btnLogin setEnabled:NO];
+    [[PFInstallation currentInstallation] setObject:[PFUser currentUser] forKey:@"user"];
+    [[PFInstallation currentInstallation] saveEventually];
     
     // Do the login
     [SSMCommunications login:self];
