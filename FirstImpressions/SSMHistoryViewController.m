@@ -149,6 +149,11 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
+ 
+ 
+ PFQuery *query = [PFQuery queryWithClassName:@"User"];
+ [query whereKey:@"recievedMessages" equalTo:@"MasterQueue"];
+ [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
 
  */
 
