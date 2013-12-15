@@ -17,7 +17,7 @@
 - (BOOL)saveMessageToQueue:(id)message;
 - (PFObject *)retrieveAMessageFromParse;
 - (PFObject *)retrieveAMessageFromParseWithBlocking;
-- (void)updateMessage:(PFObject *)message WithResponse:(NSString *)response;
+-(void)updateMessage:(PFObject *)message WithResponse:(NSString *)response WithHandshake:(BOOL)response;
 - (void)getAllMessagesForCurrentUserWithBlock:(void (^)(NSArray *))callback;
 - (void)getAllMessagesForCurrentUser;
 
