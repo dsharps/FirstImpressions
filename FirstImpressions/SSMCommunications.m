@@ -31,10 +31,26 @@
 		} else {
 			if (user.isNew) {
 				NSLog(@"User signed up and logged in through Facebook!");
+				// After logging in with Facebook
                 [[PFInstallation currentInstallation] setObject:[PFUser currentUser] forKey:@"user"];
+				[FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+					if (!error) {
+						NSString *facebookId = [result objectForKey:@"id"];
+						[user setObject:facebookId forKey:@"facebookId"];
+						[user saveInBackground];
+					}
+				}];
                 [[PFInstallation currentInstallation] saveEventually];
 			} else {
 				NSLog(@"User logged in through Facebook!");
+				[FBRequestConnection startForMeWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+					if (!error) {
+						NSString *facebookId = [result objectForKey:@"id"];
+						NSLog(@"Facebook id: %@", facebookId);
+						[user setObject:facebookId forKey:@"facebookId"];
+						[user saveInBackground];
+					}
+				}];
 			}
             
 			// Callback - login successful

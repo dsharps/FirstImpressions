@@ -225,7 +225,7 @@
 	
 	PFQuery *query = [PFQuery orQueryWithSubqueries:@[sentQuery, receivedQuery]];
 	
-	[query orderByAscending:@"createdAt"];
+	[query orderByDescending:@"createdAt"];
 	NSLog(@"Sending query");
 	
 	[query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {

@@ -37,7 +37,40 @@
 	NSString *messageDateString = [formatter stringFromDate:_message.createdAt];
 	NSLog(@"Message date string: %@", messageDateString);
 	self.title = messageDateString;
-	// Do any additional setup after loading the view.
+	
+	//NSNumber trueValue = NSN;
+	//NSInteger falseValue = 0;
+	
+	if (_message[@"handshake"] == [NSNumber numberWithBool:NO]) {
+		//handshake was set to false, hide button
+		NSLog(@"Handshake set to NO %@", _message[@"handshake"]);
+		_shareContactInfoButton.hidden = YES;
+	} else if (_message[@"handshake"] == [NSNumber numberWithBool:YES]) {
+		NSLog(@"Handshake set to YES %@", _message[@"handshake"]);
+		_shareContactInfoButton.hidden = NO;
+	} else {
+		//handshake not set
+		NSLog(@"Handshake not set %@", _message[@"handshake"]);
+		_shareContactInfoButton.hidden = NO;
+	}
+}
+
+- (IBAction)shareContactInfo
+{
+	NSLog(@"Clicked button");
+	PFUser *respondingUser = _message[@"respondingUser"];
+	//PFUser *respondingUser = [PFUser currentUser];
+	[respondingUser fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+		NSString *FBURL = [NSString stringWithFormat:@"fb://profile/%@", [respondingUser objectForKey:@"facebookId"]];
+		NSString *regularURL = [NSString stringWithFormat:@"http://facebook.com/%@", [respondingUser objectForKey:@"facebookId"]];
+		NSLog(@"FB token: %@", FBURL);
+		BOOL fbInstalled = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:FBURL]];
+		if (fbInstalled) {
+			[[UIApplication sharedApplication] openURL:FBURL];
+		} else {
+			[[UIApplication sharedApplication] openURL:regularURL];
+		}
+	}];
 }
 
 - (void)didReceiveMemoryWarning
