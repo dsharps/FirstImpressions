@@ -238,11 +238,12 @@
 	}];
 }
 
-- (void)updateMessage:(PFObject *)message WithResponse:(NSString *)response
+- (void)updateMessage:(PFObject *)message WithResponse:(NSString *)response WithHandshake:(BOOL)handshake
 {
 	PFObject *messageToUpdate = message;
 	messageToUpdate[@"response"] = response;
 	messageToUpdate[@"respondingUser"] = [PFUser currentUser];
+    messageToUpdate[@"handshake"] = [NSNumber numberWithBool:handshake];
     
     // Build the actual push notification target query
     PFQuery *query = [PFInstallation query];
