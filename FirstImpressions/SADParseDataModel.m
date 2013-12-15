@@ -208,6 +208,24 @@
 	return receivedMessage;
 }
 
+- (void)getAllMessagesForCurrentUserWithBlock:(void(^)(NSArray *foundMessages))callback
+{
+	//query
+	PFUser *user = [PFUser currentUser];
+	PFRelation *sentRelation = [user relationforKey:@"sentMessages"];
+	PFRelation *receivedRelation = [user relationforKey:@"receivedMessages"];
+	PFQuery *sentQuery = [sentRelation query];
+	PFQuery *receivedQuery = [receivedRelation query];
+	
+	PFQuery *query = [PFQuery orQueryWithSubqueries:@[sentQuery, receivedQuery]];
+	
+	[query orderByAscending:@"createdAt"];
+	
+	[query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
+		callback(results);
+	}];
+}
+
 - (void)updateMessage:(PFObject *)message WithResponse:(NSString *)response
 {
 	PFObject *messageToUpdate = message;
