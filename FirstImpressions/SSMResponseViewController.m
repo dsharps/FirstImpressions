@@ -36,7 +36,7 @@
 
 - (IBAction)updateMessageWithResponse:(id)sender
 {
-	[self.parseManager updateMessage:_receivedMessage WithResponse:_inputText.text];
+	[self.parseManager updateMessage:_receivedMessage WithResponse:_inputText.text WithHandshake:_handshake.isOn];
 	
 	[_inputText resignFirstResponder];
 	
