@@ -18,5 +18,6 @@
 -(PFObject *)retrieveAMessageFromParse;
 -(PFObject *)retrieveAMessageFromParseWithBlocking;
 -(void)updateMessage:(PFObject *)message WithResponse:(NSString *)response;
+- (void)getAllMessagesForCurrentUserWithBlock:(void(^)(NSArray *))callback;
 
 @end

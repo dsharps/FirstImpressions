@@ -9,12 +9,26 @@
 #import "SSMHistoryViewController.h"
 #import "SSMMessage.h"
 #import "SSMMessageCell.h"
+#import "SADParseDataModel.h"
 
 @interface SSMHistoryViewController ()
+
+@property (nonatomic, strong) SADParseDataModel *parseManager;
+@property (nonatomic, strong) NSArray *messagesArray;
 
 @end
 
 @implementation SSMHistoryViewController
+
+- (SADParseDataModel *)parseManager
+{
+	NSLog(@"Setting up _messageManager in Response view");
+	if (!_parseManager) {
+		_parseManager = [[SADParseDataModel alloc] init];
+	}
+	
+	return _parseManager;
+}
 
 - (IBAction)segueToComposeView:(id)sender
 {
@@ -49,6 +63,11 @@
     message.sender = @"Unhappy Penguin";
     [_messages addObject:message];
 
+	[_parseManager getAllMessagesForCurrentUserWithBlock:^(NSArray *results) {
+		_messagesArray = results;
+	}];
+	
+	
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
