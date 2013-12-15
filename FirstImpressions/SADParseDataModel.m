@@ -208,8 +208,14 @@
 	return receivedMessage;
 }
 
-- (void)getAllMessagesForCurrentUserWithBlock:(void(^)(NSArray *foundMessages))callback
+- (void)getAllMessagesForCurrentUser
 {
+	NSLog(@"Whatever");
+}
+
+- (void)getAllMessagesForCurrentUserWithBlock:(void (^)(NSArray *))callback
+{
+	NSLog(@"Starting to get all messages");
 	//query
 	PFUser *user = [PFUser currentUser];
 	PFRelation *sentRelation = [user relationforKey:@"sentMessages"];
@@ -220,9 +226,15 @@
 	PFQuery *query = [PFQuery orQueryWithSubqueries:@[sentQuery, receivedQuery]];
 	
 	[query orderByAscending:@"createdAt"];
+	NSLog(@"Sending query");
 	
 	[query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
-		callback(results);
+		if (!error) {
+			NSLog(@"Query executed successfully, found %d messages", [results count]);
+			callback(results);
+		} else {
+			NSLog(@"Failed to get messages, error:", error);
+		}
 	}];
 }
 

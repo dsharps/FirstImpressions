@@ -12,12 +12,13 @@
 
 @property (nonatomic, strong) SSMDataManager *messageManager;
 
--(BOOL)sendAMessageToParse:(NSString*)inputMessage;
--(BOOL)saveMessageToCurrentUserRelation:(id)message;
--(BOOL)saveMessageToQueue:(id)message;
--(PFObject *)retrieveAMessageFromParse;
--(PFObject *)retrieveAMessageFromParseWithBlocking;
--(void)updateMessage:(PFObject *)message WithResponse:(NSString *)response;
-- (void)getAllMessagesForCurrentUserWithBlock:(void(^)(NSArray *))callback;
+- (BOOL)sendAMessageToParse:(NSString*)inputMessage;
+- (BOOL)saveMessageToCurrentUserRelation:(id)message;
+- (BOOL)saveMessageToQueue:(id)message;
+- (PFObject *)retrieveAMessageFromParse;
+- (PFObject *)retrieveAMessageFromParseWithBlocking;
+- (void)updateMessage:(PFObject *)message WithResponse:(NSString *)response;
+- (void)getAllMessagesForCurrentUserWithBlock:(void (^)(NSArray *))callback;
+- (void)getAllMessagesForCurrentUser;
 
 @end

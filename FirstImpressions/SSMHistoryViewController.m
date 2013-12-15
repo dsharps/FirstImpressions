@@ -14,7 +14,7 @@
 @interface SSMHistoryViewController ()
 
 @property (nonatomic, strong) SADParseDataModel *parseManager;
-@property (nonatomic, strong) NSArray *messagesArray;
+@property (nonatomic, strong) __block NSArray *messagesArray;
 
 @end
 
@@ -22,7 +22,7 @@
 
 - (SADParseDataModel *)parseManager
 {
-	NSLog(@"Setting up _messageManager in Response view");
+	NSLog(@"Setting up _messageManager in inbox");
 	if (!_parseManager) {
 		_parseManager = [[SADParseDataModel alloc] init];
 	}
@@ -52,10 +52,17 @@
     [super viewDidLoad];
     // Seque to the Image Wall
 
-	[_parseManager getAllMessagesForCurrentUserWithBlock:^(NSArray *results) {
-		_messagesArray = results;
-	}];
+	__block UITableView *inboxTableView = self.tableView;
+	NSLog(@"Inbox loaded, getting messages");
 	
+	void (^inboxCallback)(NSArray *) = ^void(NSArray *foundMessages){
+		_messagesArray = foundMessages;
+		NSLog(@"Number of messages received in inbox: %d", [foundMessages count]);
+		[inboxTableView reloadData];
+	};
+	
+	[self.parseManager getAllMessagesForCurrentUser];
+	[self.parseManager getAllMessagesForCurrentUserWithBlock:inboxCallback];
 	
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -88,9 +95,9 @@
     
     static NSString *CellIdentifier = @"MessageCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    UILabel *messageLabel = (id) [cell viewWithTag:0];
-    UILabel *dateLabel = (id) [cell viewWithTag:1];
-    UIImage *image = (id) [cell viewWithTag:2];
+    UILabel *messageLabel = (id) [cell viewWithTag:1];
+    UILabel *dateLabel = (id) [cell viewWithTag:2];
+    UIImage *image = (id) [cell viewWithTag:3];
     
     PFObject *temp = [_messagesArray objectAtIndex:indexPath.row];
     messageLabel.text = temp[@"body"];
