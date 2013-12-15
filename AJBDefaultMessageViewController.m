@@ -38,7 +38,8 @@
         index = 0;
     }
     NSInteger i = index;
-    _DefaultMessage.text = [_messages objectAtIndex:i];
+    //_DefaultMessage.text = [_messages objectAtIndex:i];
+    _inputMessage.text = [_messages objectAtIndex:i];
     index++;
     
     
