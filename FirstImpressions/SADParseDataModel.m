@@ -232,23 +232,17 @@
 	messageToUpdate[@"response"] = response;
 	messageToUpdate[@"respondingUser"] = [PFUser currentUser];
     
-    // Build a query to match sending user
-    PFQuery *innerQuery = [PFUser query];
-    
-    // to only match against user key
-    [innerQuery whereKey:@"sendingUser" equalTo:message[@"sendingUser"]];
-    
     // Build the actual push notification target query
     PFQuery *query = [PFInstallation query];
     
     // only return Installations that belong to a User that
     // matches the innerQuery
-    [query whereKey:@"user" matchesQuery:innerQuery];
+    [query whereKey:@"user" equalTo:message[@"sendingUser"]];
     
     // Send the notification.
     PFPush *push = [[PFPush alloc] init];
     [push setQuery:query];
-    [push setMessage:@"Happy Birthday!"];
+    [push setMessage:response];
     [push sendPushInBackground];
     
 	[messageToUpdate saveInBackground];

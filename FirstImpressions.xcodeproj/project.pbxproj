@@ -346,7 +346,7 @@
 				ORGANIZATIONNAME = SamAlexDave;
 				TargetAttributes = {
 					693F64E61832F25D00917555 = {
-						DevelopmentTeam = G584B57X2U;
+						DevelopmentTeam = SYR8QT5TW6;
 					};
 					693F65061832F25E00917555 = {
 						TestTargetID = 693F64E61832F25D00917555;

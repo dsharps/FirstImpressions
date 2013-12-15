@@ -31,8 +31,13 @@
 		} else {
 			if (user.isNew) {
 				NSLog(@"User signed up and logged in through Facebook!");
+                [[PFInstallation currentInstallation] setObject:[PFUser currentUser] forKey:@"user"];
+                [[PFInstallation currentInstallation] saveEventually];
 			} else {
 				NSLog(@"User logged in through Facebook!");
+                //remove this code before presentation
+                [[PFInstallation currentInstallation] setObject:[PFUser currentUser] forKey:@"user"];
+                [[PFInstallation currentInstallation] saveEventually];
 			}
             
 			// Callback - login successful
