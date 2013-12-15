@@ -114,9 +114,11 @@
     NSString *message1 = @"I have a riddle:";
     NSString *message2 = @"Did you know that ";
     NSString *message3 = @"I bet you didn't know this about cats";
+    NSString *message5 = @"I'm not a scientist but...";
+    NSString *message6 = @"Here are two truths and a lie";
     NSString *message4 = @"youre not very creative";
     
-    _messages = @[message1, message2, message3, message4];
+    _messages = @[message1, message2, message3, message5, message6, message4];
     
     _DefaultMessage.text = @"Push the button for a default!";
     index = 0;
