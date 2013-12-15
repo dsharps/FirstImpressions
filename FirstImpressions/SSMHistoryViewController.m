@@ -107,7 +107,7 @@
     [formatter setDateStyle:NSDateFormatterLongStyle];
     dateLabel.text = [formatter stringFromDate:temp.createdAt];
     
-    if ([PFUser currentUser] == temp[@"sendingUser"]) {
+    if ([[PFUser currentUser] isEqual:temp[@"sendingUser"]]) {
         // sent message image here
         NSLog(@"sent message");
     } else {
