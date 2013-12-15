@@ -10,6 +10,4 @@
 
 @interface SSMHistoryViewController : UITableViewController
 
-@property (nonatomic, strong) NSMutableArray *messages;
-
 @end
