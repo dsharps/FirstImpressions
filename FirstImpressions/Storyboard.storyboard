@@ -553,11 +553,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="bodyLabel" destination="KLK-pI-7sE" id="lxv-jE-YgI"/>
-                                    <outlet property="iconForSender" destination="8ao-rh-S5Q" id="8My-Tb-ekZ"/>
-                                    <outlet property="senderLabel" destination="ZNW-sv-d6X" id="mHI-cU-sHA"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
