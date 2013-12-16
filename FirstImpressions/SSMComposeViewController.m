@@ -7,12 +7,14 @@
 //
 
 #import "SSMComposeViewController.h"
+#import "SSMReceivedMessageViewController.h"
 #define sendMessageFailedAlertTag 0
 
 @interface SSMComposeViewController ()
 
 @property (nonatomic, strong) IBOutlet UITextView *inputMessage;
 @property (nonatomic, retain) UIToolbar *keyboardToolbar;
+@property (nonatomic, strong) PFObject *receivedMessage;
 
 
 -(IBAction)sendAMessageToParse:(id)sender;
@@ -85,7 +87,7 @@
 {
     if (self.keyboardToolbar == nil) {
         self.keyboardToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
-        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"done"
+        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
                                                                        style:UIBarButtonItemStyleBordered
                                                                       target:self
                                                                       action:@selector(resignKeyboard:)];
@@ -107,7 +109,20 @@
 - (void)segueToReceivedMessage {
 	//Activate segue
 	_inputMessage.text = @"";
-	[self performSegueWithIdentifier:@"ReceivedMessageSegue" sender:self];
+	_receivedMessage = [self.parseManager retrieveAMessageFromParseWithBlocking];
+	if (_receivedMessage) {
+		[self performSegueWithIdentifier:@"receivedMessageSegue" sender:self];
+	} else {
+		NSLog(@"Found no messages, not segue-ing");
+	}
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if([segue.identifier isEqualToString:@"receivedMessageSegue"]){
+		SSMReceivedMessageViewController *controller = [segue destinationViewController];
+		controller.message = _receivedMessage;
+	}
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

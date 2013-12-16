@@ -183,6 +183,7 @@
 				//Query executed correctly
 				if ([foundMessages count] == 0) {
 					//but found no messages
+					receivedMessage = NULL;
 					NSLog(@"Watch out! No messages were found...");
 				} else {
 					//get the oldest message

@@ -15,6 +15,8 @@
 @property (nonatomic, strong) IBOutlet UITextView *second;
 @property (nonatomic, strong) SADParseDataModel *parseManager;
 @property (nonatomic, retain) UIToolbar *keyboardToolbar;
+@property (nonatomic) CGPoint originalCenter;
+
 - (void)previousField:(id)sender;
 - (void)nextField:(id)sender;
 - (void)setupKeyboardToolbar;
@@ -81,26 +83,38 @@
     if ([_second isFirstResponder]) {
         [_first becomeFirstResponder];
     }
+	if (self.originalCenter.y != self.view.center.y)
+	{
+		[UIView beginAnimations:nil context:NULL];
+		[UIView setAnimationDuration:0.25];
+		self.view.center = CGPointMake(self.originalCenter.x, self.originalCenter.y);
+		[UIView commitAnimations];
+	}
 }
 - (void)nextField:(id)sender
 {
     if ([_first isFirstResponder]) {
         [_second becomeFirstResponder];
     }
+	self.originalCenter = self.view.center;
+	[UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.25];
+	self.view.center = CGPointMake(self.originalCenter.x, self.originalCenter.y - 150);
+    [UIView commitAnimations];
 }
 - (void)setupKeyboardToolbar
 {
     if (self.keyboardToolbar == nil) {
         self.keyboardToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
-        UIBarButtonItem *previousButton = [[UIBarButtonItem alloc] initWithTitle:@"previous"
+        UIBarButtonItem *previousButton = [[UIBarButtonItem alloc] initWithTitle:@"Previous"
                                                                            style:UIBarButtonItemStyleBordered
                                                                           target:self
                                                                           action:@selector(previousField:)];
-        UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithTitle:@"next"
+        UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithTitle:@"Next"
                                                                        style:UIBarButtonItemStyleBordered
                                                                       target:self
                                                                       action:@selector(nextField:)];
-        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"done"
+        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
                                                                        style:UIBarButtonItemStyleBordered
                                                                       target:self
                                                                       action:@selector(resignKeyboard:)];
@@ -114,6 +128,14 @@
 {
     [_first resignFirstResponder];
     [_second resignFirstResponder];
+	
+	if (self.originalCenter.y != self.view.center.y)
+	{
+		[UIView beginAnimations:nil context:NULL];
+		[UIView setAnimationDuration:0.25];
+		self.view.center = CGPointMake(self.originalCenter.x, self.originalCenter.y);
+		[UIView commitAnimations];
+	}
 }
 
 
@@ -126,7 +148,7 @@
 	//Activate segue
 	_first.text = @"";
     _second.text = @"";
-	[self performSegueWithIdentifier:@"ReceivedMessageSegue2" sender:self];
+	[self performSegueWithIdentifier:@"receivedMessageSegue2" sender:self];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

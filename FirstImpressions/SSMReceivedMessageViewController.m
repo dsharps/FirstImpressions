@@ -63,9 +63,9 @@
 {
     [super viewDidLoad];
 	
-	_receivedMessage = [self.parseManager retrieveAMessageFromParseWithBlocking];
-	NSLog(@"In RVC, got back _receivedMessage. Body: %@", _receivedMessage[@"body"]);
-	_receivedMessageLabel.text = _receivedMessage[@"body"];
+	//_receivedMessage = [self.parseManager retrieveAMessageFromParseWithBlocking];
+	//NSLog(@"In RVC, got back _receivedMessage. Body: %@", _receivedMessage[@"body"]);
+	_receivedMessageLabel.text = _message[@"body"];
 }
 
 - (IBAction)rejectMessage:(id)sender

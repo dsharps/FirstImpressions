@@ -92,7 +92,7 @@
 - (void)segueToReceivedMessage {
 	//Activate segue
 	_inputMessage.text = @"";
-	[self performSegueWithIdentifier:@"ReceivedMessageSegue3" sender:self];
+	[self performSegueWithIdentifier:@"receivedMessageSegue3" sender:self];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -130,7 +130,7 @@
 {
     if (self.keyboardToolbar == nil) {
         self.keyboardToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
-        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"done"
+        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
                                                                        style:UIBarButtonItemStyleBordered
                                                                       target:self
                                                                       action:@selector(resignKeyboard:)];

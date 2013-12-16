@@ -10,4 +10,6 @@
 
 @interface SSMReceivedMessageViewController : UIViewController
 
+@property (nonatomic, strong) PFObject *message;
+
 @end
