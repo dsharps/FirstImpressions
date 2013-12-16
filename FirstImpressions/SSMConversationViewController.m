@@ -66,9 +66,9 @@
 		NSLog(@"FB token: %@", FBURL);
 		BOOL fbInstalled = [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:FBURL]];
 		if (fbInstalled) {
-			[[UIApplication sharedApplication] openURL:FBURL];
+			[[UIApplication sharedApplication] openURL:[NSURL URLWithString:FBURL]];
 		} else {
-			[[UIApplication sharedApplication] openURL:regularURL];
+			[[UIApplication sharedApplication] openURL:[NSURL URLWithString:regularURL]];
 		}
 	}];
 }
