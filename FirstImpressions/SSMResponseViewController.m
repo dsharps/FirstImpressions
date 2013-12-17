@@ -65,7 +65,7 @@
 	
 	[self.parseManager updateMessage:_receivedMessage WithResponse:_inputText.text WithHandshake:_handshake.isOn WithBlock:updateProgressBarAndButton];
 	
-	[self popToComposeView];
+	//[self popToComposeView];
 }
 
 - (void)popToComposeView
