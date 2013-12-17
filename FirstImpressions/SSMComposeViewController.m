@@ -174,12 +174,12 @@
     [self setupKeyboardToolbar];
     _inputMessage.inputAccessoryView = self.keyboardToolbar;
 	
-	for (NSString *family in [UIFont familyNames]) {
-		NSLog(@"%@", family);
-		for (NSString *name in [UIFont fontNamesForFamilyName:family]){
-			NSLog(@"  %@", name);
-		}
-	}
+//	for (NSString *family in [UIFont familyNames]) {
+//		NSLog(@"%@", family);
+//		for (NSString *name in [UIFont fontNamesForFamilyName:family]){
+//			NSLog(@"  %@", name);
+//		}
+//	}
 	
 	UIFont *geared = [UIFont fontWithName:@"GearedSlab-Regular" size:26];
 	//_instructionLabel.font = geared;
