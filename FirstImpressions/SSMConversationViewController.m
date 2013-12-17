@@ -51,7 +51,7 @@
 	} else {
 		//handshake not set
 		NSLog(@"Handshake not set %@", _message[@"handshake"]);
-		_shareContactInfoButton.hidden = NO;
+		_shareContactInfoButton.hidden = YES;
 	}
 }
 
