@@ -17,7 +17,7 @@
 @property (nonatomic, strong) PFObject *receivedMessage;
 
 
--(IBAction)sendAMessageToParse:(id)sender;
+- (IBAction)sendAMessageToParse:(id)sender;
 - (void)saveMessageToCurrentUserRelation:(id)message;
 - (void)saveMessageToQueue:(id)message;
 - (void)setupKeyboardToolbar;
@@ -37,7 +37,7 @@
 	return _parseManager;
 }
 
--(IBAction)sendAMessageToParse:(id)sender{
+- (IBAction)sendAMessageToParse:(id)sender{
 	[_inputMessage resignFirstResponder];
 	
 	//Validate input message
@@ -49,31 +49,55 @@
 											  otherButtonTitles:nil, nil];
 		[alert show];
 	} else {
+		
+		SSMComposeViewController *controller = self;
+		__block UIProgressView *progressView = (UIProgressView *)[controller.view viewWithTag:1];
+		
+		__block UIButton *sendButton = (UIButton *)[controller.view viewWithTag:2];
+		
+		void (^updateProgressBarAndButton)(NSInteger) = ^void(NSInteger currentStage) {
+			if (currentStage == 1) {
+				[progressView setProgress:0.25 animated:YES];
+				progressView.hidden = NO;
+				[sendButton setTitle:@"Sending" forState:UIControlStateNormal];
+			} else if (currentStage == 2) {
+				[progressView setProgress:0.5 animated:YES];
+			} else if (currentStage == 3) {
+				[progressView setProgress:0.75 animated:YES];
+			} else if (currentStage == 4) {
+				[progressView setProgress:1 animated:YES];
+				progressView.hidden = YES;
+				[sendButton setTitle:@"Send" forState:UIControlStateNormal];
+				[self segueToReceivedMessage];
+			}
+		};
         
         NSLog(@"we are at beginning");
-        BOOL flag = [self.parseManager sendAMessageToParse:_inputMessage.text];
-        NSLog(@"we are at beginning of conditional");
+        //BOOL flag = [self.parseManager sendAMessageToParse:_inputMessage.text];
+        [self.parseManager sendAMessageToParse:_inputMessage.text WithBlock:updateProgressBarAndButton];
+		
+		NSLog(@"we are at beginning of conditional");
 
-        if (!flag) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Message"
-                                                            message:@"Sending failed"
-                                                           delegate:self
-                                                  cancelButtonTitle:@"Ok"
-                                                  otherButtonTitles:@"Retry", nil];
-            alert.tag = sendMessageFailedAlertTag;
-            [alert show];
-        } else {
-            [self segueToReceivedMessage];
-        }
+//        if (!flag) {
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Message"
+//                                                            message:@"Sending failed"
+//                                                           delegate:self
+//                                                  cancelButtonTitle:@"Ok"
+//                                                  otherButtonTitles:@"Retry", nil];
+//            alert.tag = sendMessageFailedAlertTag;
+//            [alert show];
+//        } else {
+//            [self segueToReceivedMessage];
+//        }
 		
 	}
 
 }
 
--(void)alertView:(UIAlertView*)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+- (void)alertView:(UIAlertView*)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (alertView.tag == sendMessageFailedAlertTag) {
         if (buttonIndex == 1) {
-            [self sendAMessageToParse:nil];
+            [self sendAMessageToParse:_inputMessage.text];
         }
     }
 }
@@ -121,6 +145,7 @@
 {
 	if([segue.identifier isEqualToString:@"receivedMessageSegue"]){
 		SSMReceivedMessageViewController *controller = [segue destinationViewController];
+		NSLog(@"Attaching received message to controller: %@", _receivedMessage[@"body"]);
 		controller.message = _receivedMessage;
 	}
 }
@@ -137,6 +162,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[self navigationController].navigationBarHidden = NO;
+	//[self.tabBarController setTitle:@"Blank Message"];
+	//[super viewWillAppear:animated];
 }
 
 - (void)viewDidLoad
@@ -145,6 +172,10 @@
 	// Do any additional setup after loading the view.
     [self setupKeyboardToolbar];
     _inputMessage.inputAccessoryView = self.keyboardToolbar;
+	
+	self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"creamPixels"]];
+	
+	[self.view viewWithTag:1].hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning

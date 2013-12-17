@@ -39,9 +39,31 @@
 
 - (IBAction)updateMessageWithResponse:(id)sender
 {
-	[self.parseManager updateMessage:_receivedMessage WithResponse:_inputText.text WithHandshake:_handshake.isOn];
-	
 	[_inputText resignFirstResponder];
+	
+	SSMResponseViewController *controller = self;
+	__block UIProgressView *progressView = (UIProgressView *)[controller.view viewWithTag:1];
+	
+	__block UIButton *sendButton = (UIButton *)[controller.view viewWithTag:2];
+	
+	void (^updateProgressBarAndButton)(NSInteger) = ^void(NSInteger currentStage) {
+		if (currentStage == 1) {
+			[progressView setProgress:0.25 animated:YES];
+			progressView.hidden = NO;
+			[sendButton setTitle:@"Sending" forState:UIControlStateNormal];
+		} else if (currentStage == 2) {
+			[progressView setProgress:0.5 animated:YES];
+		} else if (currentStage == 3) {
+			[progressView setProgress:0.75 animated:YES];
+		} else if (currentStage == 4) {
+			[progressView setProgress:1 animated:YES];
+			progressView.hidden = YES;
+			[sendButton setTitle:@"Send" forState:UIControlStateNormal];
+			[self popToComposeView];
+		}
+	};
+	
+	[self.parseManager updateMessage:_receivedMessage WithResponse:_inputText.text WithHandshake:_handshake.isOn WithBlock:updateProgressBarAndButton];
 	
 	[self popToComposeView];
 }
@@ -72,7 +94,7 @@
     [self setupKeyboardToolbar];
     _inputText.inputAccessoryView = self.keyboardToolbar;
 	// Do any additional setup after loading the view.
-	NSLog([NSString stringWithFormat:@"MM Message Body: %@", self.messageManager.receivedMessage[@"body"]]);
+	NSLog([NSString stringWithFormat:@"MM Message Body: %@", _receivedMessage]);
 
 	//load the message text that we set from the previous view
 	_receivedMessageLabel.text = self.receivedMessage[@"body"];

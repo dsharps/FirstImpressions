@@ -64,8 +64,10 @@
     [super viewDidLoad];
 	
 	//_receivedMessage = [self.parseManager retrieveAMessageFromParseWithBlocking];
-	//NSLog(@"In RVC, got back _receivedMessage. Body: %@", _receivedMessage[@"body"]);
+	NSLog(@"In RVC, got back _receivedMessage. Body: %@", _message[@"body"]);
 	_receivedMessageLabel.text = _message[@"body"];
+	
+	self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"geometry"]];
 }
 
 - (IBAction)rejectMessage:(id)sender
@@ -91,7 +93,7 @@
 		//TODO fix this (can't use NSUserDefaults - Core Data?)
 		
         SSMResponseViewController *controller = (SSMResponseViewController *)segue.destinationViewController;
-		controller.receivedMessage = _receivedMessage;
+		controller.receivedMessage = _message;
     }
 }
 

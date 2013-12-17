@@ -20,8 +20,70 @@
 	return _messageManager;
 }
 
+- (void)sendAMessageToParse:(NSString*)inputMessage WithBlock:(void (^)(NSInteger))updateProgressBarAndButton
+{
+	NSLog(@"Sending message to Parse with progress bar");
+	updateProgressBarAndButton(1);
+    PFObject *newMessage = [PFObject objectWithClassName:@"Message"];
+    newMessage[@"sendingUser"] = [PFUser currentUser];
+    newMessage[@"body"] = inputMessage;
+    [newMessage saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+			updateProgressBarAndButton(2);
+            [self saveMessageToCurrentUserRelation:newMessage WithBlock:updateProgressBarAndButton];
+        } else {
+            NSLog(@"Couldn't save message");
+        }
+    }];
+}
+
+- (void)saveMessageToCurrentUserRelation:(id)message WithBlock:(void (^)(NSInteger))updateProgressBarAndButton{
+	PFUser *user = [PFUser currentUser];
+	PFRelation *relation = [user relationforKey:@"sentMessages"];
+	[relation addObject:message];
+	[user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+		if (!error) {
+			updateProgressBarAndButton(3);
+			[self saveMessageToQueue:message WithBlock:updateProgressBarAndButton];
+		} else {
+			NSLog(@"Couldn't save relation");
+		}
+	}];
+}
+
+- (void)saveMessageToQueue:(id)message WithBlock:(void (^)(NSInteger))updateProgressBarAndButton{
+	//Grab the master queue
+	PFQuery *query = [PFQuery queryWithClassName:@"MessageQueue"];
+	[query whereKey:@"name" equalTo:@"MasterQueue"];
+	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+		if(!error){
+			if([objects count] == 0){
+				//do nothing
+				NSLog(@"Couldn't find the queue");
+			} else {
+				PFObject *masterQueue = (id)objects[0];
+				//PFRelation *relation = [masterQueue relationForKey:@"messages"];
+				PFRelation *relation = [masterQueue relationforKey:@"messages"];
+				[relation addObject:message];
+				[masterQueue saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+					if (!error) {
+						updateProgressBarAndButton(4);
+					} else {
+						NSLog(@"Couldn't save queue");
+						
+					}
+				}];
+			}
+		} else {
+			//error
+			NSLog(@"Error retrieving queue from parse");
+			
+		}
+	}];
+}
+
 //Upload message to the Giant Pool O' Messages
--(BOOL)sendAMessageToParse:(NSString*)inputMessage{
+- (BOOL)sendAMessageToParse:(NSString*)inputMessage{
 	//It has to create the message object and add it to both the user's relations and the message queue
 	//It shouldn't let you proceed if any of those steps fail.
     
@@ -260,6 +322,37 @@
     [push sendPushInBackground];
     
 	[messageToUpdate saveInBackground];
+	//should we return a bool based on whether or not it succeeds?
+}
+
+- (void)updateMessage:(PFObject *)message WithResponse:(NSString *)response WithHandshake:(BOOL)handshake WithBlock:(void (^)(NSInteger))updateProgressBarAndButton
+{
+	updateProgressBarAndButton(2);
+	PFObject *messageToUpdate = message;
+	messageToUpdate[@"response"] = response;
+	messageToUpdate[@"respondingUser"] = [PFUser currentUser];
+    messageToUpdate[@"handshake"] = [NSNumber numberWithBool:handshake];
+    
+    // Build the actual push notification target query
+    PFQuery *query = [PFInstallation query];
+    
+    // only return Installations that belong to a User that
+    // matches the innerQuery
+    [query whereKey:@"user" equalTo:message[@"sendingUser"]];
+    
+    // Send the notification.
+    PFPush *push = [[PFPush alloc] init];
+    [push setQuery:query];
+    [push setMessage:response];
+    [push sendPushInBackground];
+    
+	[messageToUpdate saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+		if (!error) {
+			updateProgressBarAndButton(4);
+		} else {
+			NSLog(@"Error updating message");
+		}
+	}];
 	//should we return a bool based on whether or not it succeeds?
 }
 

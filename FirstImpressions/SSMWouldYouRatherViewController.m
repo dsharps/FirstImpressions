@@ -39,6 +39,8 @@
 ///////////////////////////////////// message sending ////////////////////////////////////////////
 -(IBAction)sendAMessageToParse:(id)sender{
 	
+	
+	
 	//Validate input message
 	if ([_first.text  isEqual: @""] || [_second.text  isEqual: @""]) {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Message"
@@ -49,20 +51,44 @@
 		[alert show];
 	} else {
         
+		SSMWouldYouRatherViewController *controller = self;
+		__block UIProgressView *progressView = (UIProgressView *)[controller.view viewWithTag:1];
+		
+		__block UIButton *sendButton = (UIButton *)[controller.view viewWithTag:2];
+		
+		void (^updateProgressBarAndButton)(NSInteger) = ^void(NSInteger currentStage) {
+			if (currentStage == 1) {
+				[progressView setProgress:0.25 animated:YES];
+				progressView.hidden = NO;
+				[sendButton setTitle:@"Sending" forState:UIControlStateNormal];
+			} else if (currentStage == 2) {
+				[progressView setProgress:0.5 animated:YES];
+			} else if (currentStage == 3) {
+				[progressView setProgress:0.75 animated:YES];
+			} else if (currentStage == 4) {
+				[progressView setProgress:1 animated:YES];
+				progressView.hidden = YES;
+				[sendButton setTitle:@"Send" forState:UIControlStateNormal];
+				[self segueToReceivedMessage];
+			}
+		};
+
+		
         NSString *inputMessage = [NSString stringWithFormat:@"Would you rather %@ or %@", _first.text, _second.text];
-        BOOL flag = [self.parseManager sendAMessageToParse:inputMessage];
-        
-        if (!flag) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Message"
-                                                            message:@"Sending failed"
-                                                           delegate:self
-                                                  cancelButtonTitle:@"Ok"
-                                                  otherButtonTitles:@"Retry", nil];
-            alert.tag = sendMessageFailedAlertTag;
-            [alert show];
-        } else {
-            [self segueToReceivedMessage];
-        }
+        //BOOL flag = [self.parseManager sendAMessageToParse:inputMessage];
+        [self.parseManager sendAMessageToParse:inputMessage WithBlock:updateProgressBarAndButton];
+		
+//        if (!flag) {
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Message"
+//                                                            message:@"Sending failed"
+//                                                           delegate:self
+//                                                  cancelButtonTitle:@"Ok"
+//                                                  otherButtonTitles:@"Retry", nil];
+//            alert.tag = sendMessageFailedAlertTag;
+//            [alert show];
+//        } else {
+//            [self segueToReceivedMessage];
+//        }
 		
 	}
     
@@ -163,6 +189,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[self navigationController].navigationBarHidden = NO;
+	//[self.tabBarController setTitle:@"Would You Rather?"];
+	//[super viewWillAppear:animated];
 }
 - (void)viewDidLoad
 {
@@ -171,6 +199,10 @@
     [self setupKeyboardToolbar];
     _first.inputAccessoryView = self.keyboardToolbar;
     _second.inputAccessoryView = self.keyboardToolbar;
+	
+	self.originalCenter = self.view.center;
+	
+	self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"creamPixels"]];
 }
 
 - (void)didReceiveMemoryWarning

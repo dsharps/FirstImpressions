@@ -124,7 +124,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     UILabel *messageLabel = (id) [cell viewWithTag:1];
     UILabel *dateLabel = (id) [cell viewWithTag:2];
-    UIImage *image = (id) [cell viewWithTag:3];
+    UIImageView *imageView = (id) [cell viewWithTag:3];
     
     PFObject *temp = [_messagesArray objectAtIndex:indexPath.row];
     messageLabel.text = temp[@"body"];
@@ -132,11 +132,18 @@
     [formatter setDateStyle:NSDateFormatterLongStyle];
     dateLabel.text = [formatter stringFromDate:temp.createdAt];
     
-    if ([[PFUser currentUser] isEqual:temp[@"sendingUser"]]) {
+	PFUser *sendingUser = temp[@"sendingUser"];
+	
+    if ([[PFUser currentUser].objectId isEqual:sendingUser.objectId]) {
         // sent message image here
+		[imageView setImage:[UIImage imageNamed:@"sentImage"]];
         NSLog(@"sent message");
     } else {
         // received message image here
+		NSLog(@"Current: %@", [PFUser currentUser].objectId);
+		
+		NSLog(@"Temp: %@", sendingUser.objectId);
+		[imageView setImage:[UIImage imageNamed:@"receivedImage"]];
         NSLog(@"received message");
     }
     

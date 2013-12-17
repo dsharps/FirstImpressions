@@ -12,7 +12,7 @@
 @interface AJBDefaultMessageViewController ()
 
 @property (nonatomic, strong) IBOutlet UITextView *inputMessage;
-@property (nonatomic, strong) IBOutlet UILabel *DefaultMessage;
+//@property (nonatomic, strong) IBOutlet UILabel *DefaultMessage;
 @property (nonatomic, strong) NSArray *messages;
 @property (nonatomic, strong) SADParseDataModel *parseManager;
 @property (nonatomic, retain) UIToolbar *keyboardToolbar;
@@ -34,20 +34,19 @@
 }
 
 
--(IBAction)getNewDefaultMessage:(id)sender {
+-( IBAction)getNewDefaultMessage:(id)sender {
     
     if (index >= [_messages count]) {
         index = 0;
     }
     NSInteger i = index;
-    //_DefaultMessage.text = [_messages objectAtIndex:i];
     _inputMessage.text = [_messages objectAtIndex:i];
     index++;
     
     
 }
 
--(IBAction)sendAMessageToParse:(id)sender{
+- (IBAction)sendAMessageToParse:(id)sender{
 	[_inputMessage resignFirstResponder];
 	
 	//Validate input message
@@ -59,31 +58,51 @@
 											  otherButtonTitles:nil, nil];
 		[alert show];
 	} else {
-        
-        NSLog(@"this is the input message : %@", _inputMessage.text);
-        NSString *input = [NSString stringWithFormat:@"%@", _inputMessage.text];
-        BOOL flag = [self.parseManager sendAMessageToParse:input];
-        
-        if (!flag) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Message"
-                                                            message:@"Sending failed"
-                                                           delegate:self
-                                                  cancelButtonTitle:@"Ok"
-                                                  otherButtonTitles:@"Retry", nil];
-            alert.tag = sendMessageFailedAlertTag;
-            [alert show];
-        } else {
-            [self segueToReceivedMessage];
-        }
+        AJBDefaultMessageViewController *controller = self;
+		__block UIProgressView *progressView = (UIProgressView *)[controller.view viewWithTag:1];
 		
+		__block UIButton *sendButton = (UIButton *)[controller.view viewWithTag:2];
+		
+		void (^updateProgressBarAndButton)(NSInteger) = ^void(NSInteger currentStage) {
+			if (currentStage == 1) {
+				[progressView setProgress:0.25 animated:YES];
+				progressView.hidden = NO;
+				[sendButton setTitle:@"Sending" forState:UIControlStateNormal];
+			} else if (currentStage == 2) {
+				[progressView setProgress:0.5 animated:YES];
+			} else if (currentStage == 3) {
+				[progressView setProgress:0.75 animated:YES];
+			} else if (currentStage == 4) {
+				[progressView setProgress:1 animated:YES];
+				progressView.hidden = YES;
+				[sendButton setTitle:@"Send" forState:UIControlStateNormal];
+				[self segueToReceivedMessage];
+			}
+		};
+
+        NSLog(@"this is the input message : %@", _inputMessage.text);
+        NSString *inputMessage = [NSString stringWithFormat:@"%@", _inputMessage.text];
+        //BOOL flag = [self.parseManager sendAMessageToParse:input];
+        [self.parseManager sendAMessageToParse:inputMessage WithBlock:updateProgressBarAndButton];
+//        if (!flag) {
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Message"
+//                                                            message:@"Sending failed"
+//                                                           delegate:self
+//                                                  cancelButtonTitle:@"Ok"
+//                                                  otherButtonTitles:@"Retry", nil];
+//            alert.tag = sendMessageFailedAlertTag;
+//            [alert show];
+//        } else {
+//            [self segueToReceivedMessage];
+//        }
 	}
     
 }
 
--(void)alertView:(UIAlertView*)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+- (void)alertView:(UIAlertView*)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (alertView.tag == sendMessageFailedAlertTag) {
         if (buttonIndex == 1) {
-            [self sendAMessageToParse:nil];
+            [self sendAMessageToParse: _inputMessage.text];
         }
     }
 }
@@ -111,18 +130,44 @@
     // create default array
     [self setupKeyboardToolbar];
     _inputMessage.inputAccessoryView = self.keyboardToolbar;
-    NSString *message1 = @"I have a riddle:";
+	
+    NSString *message1 = @"I have a riddle: ";
     NSString *message2 = @"Did you know that ";
-    NSString *message3 = @"I bet you didn't know this about cats";
-    NSString *message5 = @"I'm not a scientist but...";
-    NSString *message6 = @"Here are two truths and a lie";
-    NSString *message4 = @"youre not very creative";
-    
+    NSString *message3 = @"I bet you didn't know this about cats ";
+    NSString *message5 = @"I'm not a scientist but, ";
+    NSString *message6 = @"Here are two truths and a lie: ";
+    NSString *message4 = @"Here's an embarrassing story: ";
+
     _messages = @[message1, message2, message3, message5, message6, message4];
     
-    _DefaultMessage.text = @"Push the button for a default!";
+    //_DefaultMessage.text = @"Push the button for a default!";
     index = 0;
     
+	self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"creamPixels"]];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+	//[self.tabBarController setTitle:@"Prompts"];
+	//[super viewWillAppear:animated];
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+	if (event.subtype == UIEventSubtypeMotionShake) {
+		NSLog(@"User shook phone");
+		[self getNewDefaultMessage:NULL];
+	}
+	
+	if ([super respondsToSelector:@selector(motionEnded:withEvent:)])
+	{
+		[super motionEnded:motion withEvent:event];
+	}
+}
+
+- (BOOL)canBecomeFirstResponder
+{
+	return YES;
 }
 ///////////////////   keyboard toolbar stuff /////////////////////
 

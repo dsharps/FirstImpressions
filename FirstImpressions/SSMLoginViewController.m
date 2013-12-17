@@ -28,10 +28,17 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+	UINavigationController *navController = [self navigationController];
+	navController.navigationBar.hidden = YES;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+	//[SSMCommunications login:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,6 +63,8 @@
     
 	// Did we login successfully ?
 	if (loggedIn) {
+		UINavigationController *navController = [self navigationController];
+		navController.navigationBar.hidden = NO;
         //NSLog([NSString stringWithFormat:@"%@", [PFUser currentUser].username]);
 		[self performSegueWithIdentifier:@"LoginSuccessful" sender:self];
 	} else {
