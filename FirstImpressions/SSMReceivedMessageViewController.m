@@ -73,6 +73,7 @@
 	[_acceptButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, -7, 0)];
 	_rejectButton.titleLabel.font = [UIFont fontWithName:@"GearedSlab-Regular" size:26];
 	[_rejectButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, -7, 0)];
+	
 	self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"geometry"]];
 }
 
