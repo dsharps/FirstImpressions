@@ -98,6 +98,12 @@
 
 	//load the message text that we set from the previous view
 	_receivedMessageLabel.text = self.receivedMessage[@"body"];
+	
+	UIFont *geared = [UIFont fontWithName:@"GearedSlab-Regular" size:26];
+	//_instructionLabel.font = geared;
+	_sendButton.titleLabel.font = [UIFont fontWithName:@"GearedSlab-Regular" size:26];
+	[_sendButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, -7, 0)];
+	self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"geometry"]];
 }
 ///////////////////   keyboard toolbar stuff /////////////////////
 

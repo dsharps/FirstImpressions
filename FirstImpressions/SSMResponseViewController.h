@@ -15,6 +15,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *receivedMessageLabel;
 @property (nonatomic, strong) IBOutlet UITextView *inputText;
 @property (nonatomic, strong) IBOutlet UISwitch *handshake;
+@property (nonatomic, strong) IBOutlet UIButton *sendButton;
 @property (nonatomic, strong) PFObject *receivedMessage;
 @property (nonatomic, strong) SADParseDataModel *parseManager;
 

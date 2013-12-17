@@ -11,4 +11,8 @@
 
 @interface AJBDefaultMessageViewController : UIViewController
 
+@property (nonatomic, strong) IBOutlet UILabel *instructionLabel;
+@property (nonatomic, strong) IBOutlet UIButton *sendButton;
+@property (nonatomic, strong) IBOutlet UIButton *generateButton;
+
 @end

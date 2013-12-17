@@ -31,6 +31,7 @@
 		37F833D61832FF1700C9EDDD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F833D51832FF1700C9EDDD /* Security.framework */; };
 		37F833D81832FF2000C9EDDD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F833D71832FF2000C9EDDD /* StoreKit.framework */; };
 		37F833DA1832FF2A00C9EDDD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F833D91832FF2A00C9EDDD /* SystemConfiguration.framework */; };
+		6913FF041860A4E700B35215 /* GearedSlab.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6913FF031860A4A500B35215 /* GearedSlab.ttf */; };
 		693F64EB1832F25E00917555 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693F64EA1832F25E00917555 /* Foundation.framework */; };
 		693F64ED1832F25E00917555 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693F64EC1832F25E00917555 /* CoreGraphics.framework */; };
 		693F64EF1832F25E00917555 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693F64EE1832F25E00917555 /* UIKit.framework */; };
@@ -98,6 +99,7 @@
 		37F833D51832FF1700C9EDDD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		37F833D71832FF2000C9EDDD /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		37F833D91832FF2A00C9EDDD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		6913FF031860A4A500B35215 /* GearedSlab.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = GearedSlab.ttf; path = ../GearedSlab.ttf; sourceTree = "<group>"; };
 		693F64E71832F25D00917555 /* FirstImpressions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirstImpressions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		693F64EA1832F25E00917555 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		693F64EC1832F25E00917555 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -270,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				37E52921183A8FD300EECF9A /* icon1.jpg */,
+				6913FF031860A4A500B35215 /* GearedSlab.ttf */,
 				693F64F41832F25E00917555 /* FirstImpressions-Info.plist */,
 				37F833BF1832F80200C9EDDD /* Storyboard.storyboard */,
 				693F64F51832F25E00917555 /* InfoPlist.strings */,
@@ -378,6 +381,7 @@
 			files = (
 				693F64F71832F25E00917555 /* InfoPlist.strings in Resources */,
 				693F65021832F25E00917555 /* Images.xcassets in Resources */,
+				6913FF041860A4E700B35215 /* GearedSlab.ttf in Resources */,
 				37E52922183A8FD300EECF9A /* icon1.jpg in Resources */,
 				37F833C01832F80200C9EDDD /* Storyboard.storyboard in Resources */,
 				37EE7EDB183C23AD00B3E444 /* FBUserSettingsViewResources.bundle in Resources */,

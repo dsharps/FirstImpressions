@@ -11,4 +11,7 @@
 
 @interface SSMWouldYouRatherViewController : UIViewController
 
+@property (nonatomic, strong) IBOutlet UILabel *instructionLabel;
+@property (nonatomic, strong) IBOutlet UIButton *sendButton;
+
 @end

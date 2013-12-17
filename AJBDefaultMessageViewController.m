@@ -67,7 +67,7 @@
 			if (currentStage == 1) {
 				[progressView setProgress:0.25 animated:YES];
 				progressView.hidden = NO;
-				[sendButton setTitle:@"Sending" forState:UIControlStateNormal];
+				[sendButton setTitle:@"SENDING" forState:UIControlStateNormal];
 			} else if (currentStage == 2) {
 				[progressView setProgress:0.5 animated:YES];
 			} else if (currentStage == 3) {
@@ -75,7 +75,7 @@
 			} else if (currentStage == 4) {
 				[progressView setProgress:1 animated:YES];
 				progressView.hidden = YES;
-				[sendButton setTitle:@"Send" forState:UIControlStateNormal];
+				[sendButton setTitle:@"SEND" forState:UIControlStateNormal];
 				[self segueToReceivedMessage];
 			}
 		};
@@ -143,7 +143,13 @@
     //_DefaultMessage.text = @"Push the button for a default!";
     index = 0;
     
-	self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"creamPixels"]];
+	UIFont *geared = [UIFont fontWithName:@"GearedSlab-Regular" size:26];
+	//_instructionLabel.font = geared;
+	_sendButton.titleLabel.font = [UIFont fontWithName:@"GearedSlab-Regular" size:26];
+	[_sendButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, -7, 0)];
+	_generateButton.titleLabel.font = [UIFont fontWithName:@"GearedSlab-Regular" size:26];
+	[_generateButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, -7, 0)];
+	//self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"creamPixels"]];
 }
 
 - (void)viewWillAppear:(BOOL)animated

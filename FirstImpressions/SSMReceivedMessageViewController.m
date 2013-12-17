@@ -67,6 +67,12 @@
 	NSLog(@"In RVC, got back _receivedMessage. Body: %@", _message[@"body"]);
 	_receivedMessageLabel.text = _message[@"body"];
 	
+	UIFont *geared = [UIFont fontWithName:@"GearedSlab-Regular" size:26];
+	//_instructionLabel.font = geared;
+	_acceptButton.titleLabel.font = [UIFont fontWithName:@"GearedSlab-Regular" size:26];
+	[_acceptButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, -7, 0)];
+	_rejectButton.titleLabel.font = [UIFont fontWithName:@"GearedSlab-Regular" size:26];
+	[_rejectButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, -7, 0)];
 	self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"geometry"]];
 }
 
