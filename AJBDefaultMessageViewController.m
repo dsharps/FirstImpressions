@@ -61,7 +61,7 @@
 	} else {
         
         NSLog(@"this is the input message : %@", _inputMessage.text);
-        NSString *input = [NSString stringWithFormat:@"%@ %@", _DefaultMessage.text, _inputMessage.text];
+        NSString *input = [NSString stringWithFormat:@"%@", _inputMessage.text];
         BOOL flag = [self.parseManager sendAMessageToParse:input];
         
         if (!flag) {

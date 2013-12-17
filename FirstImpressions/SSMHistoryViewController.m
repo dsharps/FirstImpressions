@@ -54,23 +54,48 @@
     [super viewDidLoad];
     // Seque to the Image Wall
 
-	__block UITableView *inboxTableView = self.tableView;
-	NSLog(@"Inbox loaded, getting messages");
-	
-	void (^inboxCallback)(NSArray *) = ^void(NSArray *foundMessages){
-		_messagesArray = foundMessages;
-		NSLog(@"Number of messages received in inbox: %d", [foundMessages count]);
-		[inboxTableView reloadData];
-	};
-	
-	[self.parseManager getAllMessagesForCurrentUser];
-	[self.parseManager getAllMessagesForCurrentUserWithBlock:inboxCallback];
+    [self refreshMessages];
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    
+    
+    
+    [refresh addTarget:self action:@selector(refreshMessages)
+      forControlEvents:UIControlEventValueChanged];
+    
+    self.refreshControl = refresh;
 	
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)stopRefresh
+
+{
+    
+    [self.refreshControl endRefreshing];
+    
+}
+
+- (void)refreshMessages
+{
+    
+	__block UITableView *inboxTableView = self.tableView;
+	NSLog(@"Inbox loaded, getting messages");
+    
+	void (^inboxCallback)(NSArray *) = ^void(NSArray *foundMessages){
+		_messagesArray = foundMessages;
+		NSLog(@"Number of messages received in inbox: %d", [foundMessages count]);
+		[inboxTableView reloadData];
+	};
+    
+	[self.parseManager getAllMessagesForCurrentUser];
+	[self.parseManager getAllMessagesForCurrentUserWithBlock:inboxCallback];
+    [self stopRefresh];
 }
 
 - (void)didReceiveMemoryWarning
