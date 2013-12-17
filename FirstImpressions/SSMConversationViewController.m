@@ -45,7 +45,9 @@
 	
 	//NSNumber trueValue = NSN;
 	//NSInteger falseValue = 0;
+	PFUser *sendingUser = _message[@"sendingUser"];
 	
+    if ([[PFUser currentUser].objectId isEqual:sendingUser.objectId]) {
 	if (_message[@"handshake"] == [NSNumber numberWithBool:NO]) {
 		//handshake was set to false, hide button
 		NSLog(@"Handshake set to NO %@", _message[@"handshake"]);
@@ -58,6 +60,10 @@
 		NSLog(@"Handshake not set %@", _message[@"handshake"]);
 		_shareContactInfoButton.hidden = YES;
 	}
+    } else {
+		//user is not sending user, cannot view shareContact
+		_shareContactInfoButton.hidden = YES;
+    }
 }
 
 - (IBAction)shareContactInfo
