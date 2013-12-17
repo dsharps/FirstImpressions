@@ -38,6 +38,11 @@
 	NSLog(@"Message date string: %@", messageDateString);
 	self.title = messageDateString;
 	
+	UIFont *geared = [UIFont fontWithName:@"GearedSlab-Regular" size:26];
+	//_instructionLabel.font = geared;
+	_shareContactInfoButton.titleLabel.font = [UIFont fontWithName:@"GearedSlab-Regular" size:26];
+	[_shareContactInfoButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, -7, 0)];
+	
 	//NSNumber trueValue = NSN;
 	//NSInteger falseValue = 0;
 	PFUser *sendingUser = _message[@"sendingUser"];
