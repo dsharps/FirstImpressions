@@ -134,8 +134,8 @@
 	//Activate segue
 	_inputMessage.text = @"";
 	_receivedMessage = [self.parseManager retrieveAMessageFromParseWithBlocking];
-	if (_receivedMessage) {
-		[self performSegueWithIdentifier:@"receivedMessageSegue" sender:self];
+	if (_receivedMessage == (id)[NSNull null]) {
+		NSLog(@"body: %@", _receivedMessage[@"body"]);		[self performSegueWithIdentifier:@"receivedMessageSegue" sender:self];
 	} else {
 		NSLog(@"Found no messages, not segue-ing");
 	}
