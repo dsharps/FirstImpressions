@@ -99,7 +99,7 @@
 	self.originalCenter = self.view.center;
 	[UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.25];
-	self.view.center = CGPointMake(self.originalCenter.x, self.originalCenter.y - 150);
+	self.view.center = CGPointMake(self.originalCenter.x, self.originalCenter.y - 132);
     [UIView commitAnimations];
 }
 - (void)setupKeyboardToolbar
